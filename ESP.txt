@@ -1,0 +1,6 @@
+Arduin to ESP:
+RX2  	TX
+TX2	RX
+	CH_PC	3.3V
+	VCC	3.3V
+	GND	GND

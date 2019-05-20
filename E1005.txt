@@ -1,0 +1,7 @@
+Arduino to E1005:
+RX1  	pin5
+TX1	pin4
+	pin3	GND
+	pin2	5V
+	pin9	buzzer
+	pin12	move sensor
