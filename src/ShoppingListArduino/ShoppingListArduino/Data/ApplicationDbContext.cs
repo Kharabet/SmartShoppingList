@@ -44,5 +44,7 @@ namespace ShoppingListArduino.Data
             base.OnModelCreating(modelBuilder);
 
         }
+
+        public DbSet<ShoppingListArduino.Models.UserProduct> UserProduct { get; set; }
     }
 }

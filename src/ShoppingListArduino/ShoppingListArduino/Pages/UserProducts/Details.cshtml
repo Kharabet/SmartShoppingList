@@ -1,0 +1,37 @@
+﻿@page
+@model ShoppingListArduino.Pages.UserProducts.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>UserProduct</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserProduct.Product)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserProduct.Product.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserProduct.User)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserProduct.User.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserProduct.Quantity)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserProduct.Quantity)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-page="./Index">Back to List</a>
+</div>

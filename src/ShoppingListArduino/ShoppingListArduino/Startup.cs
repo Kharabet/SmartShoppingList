@@ -53,7 +53,12 @@ namespace ShoppingListArduino
             });
 
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+                .AddRazorPagesOptions(options =>
+                {
+                    options.Conventions.AuthorizeFolder("/Products");
+                    options.Conventions.AllowAnonymousToPage("/Index");
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

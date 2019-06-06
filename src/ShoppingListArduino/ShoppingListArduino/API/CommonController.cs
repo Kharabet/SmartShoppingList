@@ -3,19 +3,48 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
+using ShoppingListArduino.Data;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ShoppingListArduino.API
 {
-    [Route("api/[controller]")]
+    [Route("api/")]
     public class CommonController : Controller
     {
+        private ApplicationDbContext _context;
+
+        public CommonController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
         // GET: api/<controller>
         [HttpGet]
-        public IEnumerable<string> Get()
+        [Route("get-product")]
+        public JObject GetProduct(string code)
         {
-            return new string[] { "value1", "value2" };
+            var product = _context.Products.Where(x => x.Barcode == code).FirstOrDefault();
+
+            if (product == null)
+            {
+                return JObject.FromObject(new { success = false });
+            }
+            else
+            {
+                return JObject.FromObject(new
+                {
+                    success = true,
+                    product = new
+                    {
+                        id = product.Id,
+                        title = product.Title,
+                        description = product.Description
+                    }
+                });
+            }
+           
         }
 
         // GET api/<controller>/5
