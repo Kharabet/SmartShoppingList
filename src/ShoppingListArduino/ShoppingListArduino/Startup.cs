@@ -56,8 +56,9 @@ namespace ShoppingListArduino
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
                 .AddRazorPagesOptions(options =>
                 {
-                    options.Conventions.AuthorizeFolder("/Products");
-                    options.Conventions.AllowAnonymousToPage("/Index");
+                    options.Conventions.AuthorizeFolder("/UserProducts");
+                    options.Conventions.AddPageRoute("/UserProducts/Index", "/Index");
+                    options.Conventions.AddPageRoute("/UserProducts/Index", "/");
                 });
         }
 
