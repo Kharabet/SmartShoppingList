@@ -1,0 +1,33 @@
+version: '3'
+
+volumes:
+  datafiles:
+
+services:
+  db:
+    image: mysql:8.0.16
+    volumes:
+      - datafiles:/var/lib/mysql
+    restart: always
+    ports:
+    - "3308:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: q123321
+      MYSQL_DATABASE: aspnet-ShoppingListArduino
+      MYSQL_USER: db_user
+      MYSQL_PASSWORD: q123321
+      MYSQL_TCP_PORT: 3306
+
+  mvc:
+    image: shopping-list-image
+    build:
+       context: .
+    depends_on:
+      - db
+    ports:
+      - "5000:5000"
+    restart: always
+    environment:
+      ASPNETCORE_URLS: http://localhost:5000
+
+    
