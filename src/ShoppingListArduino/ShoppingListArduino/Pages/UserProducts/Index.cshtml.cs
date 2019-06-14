@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -13,19 +14,24 @@ namespace ShoppingListArduino.Pages.UserProducts
     public class IndexModel : PageModel
     {
         private readonly ShoppingListArduino.Data.ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public IndexModel(ShoppingListArduino.Data.ApplicationDbContext context)
+
+        public IndexModel(ShoppingListArduino.Data.ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         public IList<UserProduct> UserProduct { get;set; }
 
         public async Task OnGetAsync()
         {
+            var user = await _userManager.GetUserAsync(HttpContext.User); 
+            
             UserProduct = await _context.UserProduct
                 .Include(u => u.Product)
-                .Include(u => u.User).ToListAsync();
+                .Where(u => u.UserId == user.Id).ToListAsync();
         }
     }
 }

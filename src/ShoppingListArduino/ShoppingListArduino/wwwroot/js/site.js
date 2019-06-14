@@ -4,6 +4,13 @@
 // Write your Javascript code.
 
 $(function () {
+
+
+
+
+
+
+
     var resultCollector = Quagga.ResultCollector.create({
         capture: true,
         capacity: 20,
@@ -295,9 +302,16 @@ $(function () {
 
             $.get("/api/get-product",
                 {code: code}, function(resp) {
-                if (resp.success) {
-                    $("#productId").val(resp.product.id);
-                }
+                    if (resp.success) {
+                        $.alert(resp.product.title + " successfully addedd!");
+                        $("#UserProduct_ProductId").val(resp.product.id);
+                        $("#UserProduct_Quantity").val(2);
+                        $("#UserProduct_Quantity").form.submit();
+                    } else {
+                        $.alert("Add this product to database!");
+                        window.location.assign("/Products/Create?barcode=" + code);
+                    }
+
             });
             $node = $('<li><div class="thumbnail"><div class="imgWrapper"><img /></div><div class="caption"><h4 class="code"></h4></div></div></li>');
             $node.find("img").attr("src", canvas.toDataURL());

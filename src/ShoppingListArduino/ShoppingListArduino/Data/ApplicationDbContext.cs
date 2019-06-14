@@ -19,7 +19,12 @@ namespace ShoppingListArduino.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Product>()
+                .ToTable("products")
+                .HasKey(x => x.Id);
+
             modelBuilder.Entity<UserProduct>()
+                .ToTable("userproduct")
                 .HasKey(t => new { t.UserId, t.ProductId});
 
             modelBuilder.Entity<UserProduct>()

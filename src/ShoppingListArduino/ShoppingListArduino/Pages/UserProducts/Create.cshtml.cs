@@ -36,10 +36,20 @@ namespace ShoppingListArduino.Pages.UserProducts
                 return Page();
             }
 
-            _context.UserProduct.Add(UserProduct);
+            var userProduct = _context.UserProduct.Find(UserProduct.UserId, UserProduct.ProductId);
+            if (userProduct == null)
+            {
+                _context.UserProduct.Add(UserProduct);
+
+            }
+            else
+            {
+                userProduct.Quantity += UserProduct.Quantity;
+            }
+
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./UserProducts/Index");
+            return RedirectToPage("./Index");
         }
     }
 }

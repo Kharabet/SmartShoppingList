@@ -19,8 +19,9 @@ namespace ShoppingListArduino.Pages.Products
             _context = context;
         }
 
-        public IActionResult OnGet()
+        public IActionResult OnGet(string barcode)
         {
+            Product = new Product {Barcode = barcode};
             return Page();
         }
 
@@ -37,7 +38,7 @@ namespace ShoppingListArduino.Pages.Products
             _context.Products.Add(Product);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./UserProducts/Index");
+            return RedirectToPage("../UserProducts/Index");
         }
     }
 }
