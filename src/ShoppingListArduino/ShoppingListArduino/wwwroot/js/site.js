@@ -297,27 +297,117 @@ $(function () {
 
         if (App.lastResult !== code) {
             App.lastResult = code;
-            var $node = null, canvas = Quagga.canvas.dom.image;
 
+            $.confirm({
+                title: 'Is the barcode is '+code+'?',
+                content: 'Simple confirm!',
+                buttons: {
+                    Yes: function () {
+                        $.get("/api/get-product",
+                            { code: code }, function (resp) {
+                                if (resp.success) {
+                                    $.alert(resp.product.title + " successfully addedd!");
+                                    $("#UserProduct_ProductId").val(resp.product.id);
+                                    $("#UserProduct_Quantity").val(1);
+                                    $("#UserProduct_Quantity")[0].form.submit();
+                                } else {
+                                    $.confirm({
+                                        title: 'Add this product!',
+                                        content: '' +
+                                            '<form action="" class="formName">' +
+                                            '<div class="form-group">' +
+                                            '<label>Title</label>' +
+                                            '<input type="text" name="Product.Title" placeholder="Product Title" class="name form-control" required />' +
+                                            '<label>Description</label>' +
+                                            '<input type="text" name="Product.Description" placeholder="Product Description" class="name form-control" required />' +
+                                            '</div>' +
+                                            '</form>',
+                                        buttons: {
+                                            formSubmit: {
+                                                text: 'Submit',
+                                                btnClass: 'btn-blue',
+                                                action: function () {
+                                                    var formData = new FormData(this.$content.find('form')[0]);
+                                                    formData.append("Product.Barcode", code);
+                                                    formData.append("__RequestVerificationToken", $('input:hidden[name="__RequestVerificationToken"]').val());
+                                                    ajaxPostWithVerificationToken(formData, function(resp) {
+                                                        $.get("/api/get-product",
+                                                            { code: code },
+                                                            function(resp) {
+                                                                if (resp.success) {
 
-            $.get("/api/get-product",
-                {code: code}, function(resp) {
-                    if (resp.success) {
-                        $.alert(resp.product.title + " successfully addedd!");
-                        $("#UserProduct_ProductId").val(resp.product.id);
-                        $("#UserProduct_Quantity").val(2);
-                        $("#UserProduct_Quantity").form.submit();
-                    } else {
-                        $.alert("Add this product to database!");
-                        window.location.assign("/Products/Create?barcode=" + code);
+                                                                    $("#UserProduct_ProductId").val(resp.product.id);
+                                                                    $("#UserProduct_Quantity").val(1);
+                                                                    $("#UserProduct_Quantity")[0].form.submit();
+                                                                    //var data = {
+                                                                    //    userId: $("#UserProduct_UserId").val(),
+                                                                    //    quantity: $("#UserProduct_Quantity").val(),
+                                                                    //    productId: resp.product.id
+                                                                    //};
+
+                                                                    //$.post("/api/add-user-product", data).done(function(response) {
+                                                                    //    response.success === true ? $.alert("successfully addedd!")
+                                                                    //        : $.alert("Something went wrong!");
+
+                                                                    //});
+                                                                }
+                                                            });
+                                                    }, function(err) {
+                                                        console.log(err)
+                                                    });
+                                                }
+                                            },
+                                            cancel: function () {
+                                                //close
+                                            },
+                                        },
+                                        onContentReady: function () {
+                                            // bind to events
+                                            var jc = this;
+                                            this.$content.find('form').on('submit', function (e) {
+                                                // if the user submits the form by pressing enter in the field.
+                                                e.preventDefault();
+                                                jc.$$formSubmit.trigger('click'); // reference the button and click it
+                                            });
+                                        }
+                                    });
+                                    //window.location.assign("/Products/Create?barcode=" + code);
+                                    
+                                }
+
+                            });
+                    },
+                    No: function () {
+                        $.alert('Scan the barcode again!!');
+                        return;
                     }
-
+                }
             });
-            $node = $('<li><div class="thumbnail"><div class="imgWrapper"><img /></div><div class="caption"><h4 class="code"></h4></div></div></li>');
-            $node.find("img").attr("src", canvas.toDataURL());
-            $node.find("h4.code").html(code);
-            $("#result_strip ul.thumbnails").prepend($node);
+
+            //var $node = null, canvas = Quagga.canvas.dom.image;
+
+
+            //$node = $('<li><div class="thumbnail"><div class="imgWrapper"><img /></div><div class="caption"><h4 class="code"></h4></div></div></li>');
+            //$node.find("img").attr("src", canvas.toDataURL());
+            //$node.find("h4.code").html(code);
+            //$("#result_strip ul.thumbnails").prepend($node);
         }
     });
+
+    function ajaxPostWithVerificationToken (formData, success, failure) {
+        $.ajax({
+            type: "POST",
+            url: "/Products/Create",
+            headers: {
+                RequestVerificationToken:
+                    $('input:hidden[name="__RequestVerificationToken"]').val()
+            },
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response) { success(response) },
+            failure: function(response) { failure(response) }
+        });
+    }
 
 });

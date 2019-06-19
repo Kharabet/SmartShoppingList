@@ -38,7 +38,7 @@ namespace ShoppingListArduino.Pages.Products
             _context.Products.Add(Product);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("../UserProducts/Index");
+            return RedirectToPage("../UserProducts/Create");
         }
     }
 }

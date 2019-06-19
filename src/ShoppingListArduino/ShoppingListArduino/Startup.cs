@@ -70,7 +70,7 @@ namespace ShoppingListArduino
             ApplicationDbInitializer.SeedUsers(userManager);
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                //app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
             }
             else
@@ -78,6 +78,8 @@ namespace ShoppingListArduino
                 app.UseExceptionHandler("/Error");
                 app.UseHsts();
             }
+
+            app.UseDeveloperExceptionPage();
 
             //app.UseHttpsRedirection();
             app.UseStaticFiles();

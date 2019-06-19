@@ -47,6 +47,25 @@ namespace ShoppingListArduino.API
            
         }
 
+
+        [HttpPost]
+        [Route("add-user-product")]
+        public JObject AddUserProduct(string userId, int productId, int quantity)
+        {
+            var userProduct = _context.UserProduct.Find(userId, productId);
+            if (userProduct != null)
+            {
+                userProduct.Quantity += quantity;
+
+                _context.SaveChanges();
+                return JObject.FromObject(new { success = true });
+
+            }
+
+            return JObject.FromObject(new { success = false });
+
+        }
+
         // GET api/<controller>/5
         [HttpGet("{id}")]
         public string Get(int id)
