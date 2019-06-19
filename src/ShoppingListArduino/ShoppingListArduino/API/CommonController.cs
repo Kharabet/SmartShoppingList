@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 using ShoppingListArduino.Data;
+using ShoppingListArduino.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -53,16 +54,32 @@ namespace ShoppingListArduino.API
         public JObject AddUserProduct(string userId, int productId, int quantity)
         {
             var userProduct = _context.UserProduct.Find(userId, productId);
-            if (userProduct != null)
+            if (userProduct == null)
+            {
+                _context.UserProduct.Add(new UserProduct()
+                {
+                    UserId = userId,
+                    ProductId = productId,
+                    Quantity = quantity
+                });
+
+            }
+            else
             {
                 userProduct.Quantity += quantity;
+            }
 
+            try
+            {
                 _context.SaveChanges();
                 return JObject.FromObject(new { success = true });
 
             }
+            catch (Exception ex)
+            {
+                return JObject.FromObject(new { success = false });
 
-            return JObject.FromObject(new { success = false });
+            }
 
         }
 

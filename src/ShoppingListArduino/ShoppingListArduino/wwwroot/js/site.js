@@ -294,9 +294,11 @@ $(function () {
 
     Quagga.onDetected(function (result) {
         var code = result.codeResult.code;
-
+        
         if (App.lastResult !== code) {
             App.lastResult = code;
+            var productQuantity = $("#UserProduct_Quantity").val();
+            var userId = $("#UserProduct_UserId").val();
 
             $.confirm({
                 title: 'Is the barcode is '+code+'?',
@@ -306,10 +308,18 @@ $(function () {
                         $.get("/api/get-product",
                             { code: code }, function (resp) {
                                 if (resp.success) {
-                                    $.alert(resp.product.title + " successfully addedd!");
-                                    $("#UserProduct_ProductId").val(resp.product.id);
-                                    $("#UserProduct_Quantity").val(1);
-                                    $("#UserProduct_Quantity")[0].form.submit();
+                                    var productId = resp.product.id;
+                                    var data = {
+                                        userId: userId,
+                                        quantity: productQuantity,
+                                        productId: resp.product.id
+                                    };
+
+                                    $.post("/api/add-user-product", data).done(function(response) {
+                                        response.success === true ? $.alert("successfully addedd!")
+                                            : $.alert("Something went wrong!");
+
+                                    });
                                 } else {
                                     $.confirm({
                                         title: 'Add this product!',
@@ -335,21 +345,17 @@ $(function () {
                                                             { code: code },
                                                             function(resp) {
                                                                 if (resp.success) {
+                                                                    var data = {
+                                                                        userId: userId,
+                                                                        quantity: productQuantity,
+                                                                        productId: resp.product.id
+                                                                    };
 
-                                                                    $("#UserProduct_ProductId").val(resp.product.id);
-                                                                    $("#UserProduct_Quantity").val(1);
-                                                                    $("#UserProduct_Quantity")[0].form.submit();
-                                                                    //var data = {
-                                                                    //    userId: $("#UserProduct_UserId").val(),
-                                                                    //    quantity: $("#UserProduct_Quantity").val(),
-                                                                    //    productId: resp.product.id
-                                                                    //};
+                                                                    $.post("/api/add-user-product", data).done(function(response) {
+                                                                        response.success === true ? $.alert("successfully addedd!")
+                                                                            : $.alert("Something went wrong!");
 
-                                                                    //$.post("/api/add-user-product", data).done(function(response) {
-                                                                    //    response.success === true ? $.alert("successfully addedd!")
-                                                                    //        : $.alert("Something went wrong!");
-
-                                                                    //});
+                                                                    });
                                                                 }
                                                             });
                                                     }, function(err) {
@@ -371,8 +377,6 @@ $(function () {
                                             });
                                         }
                                     });
-                                    //window.location.assign("/Products/Create?barcode=" + code);
-                                    
                                 }
 
                             });
