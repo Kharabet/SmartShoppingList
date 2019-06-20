@@ -2,21 +2,15 @@
 @model ShoppingListArduino.Pages.UserProducts.CreateModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "To Waste Bin";
 }
 
-<h2>Create</h2>
+<h2>Throw it away?</h2>
 
 <h4>UserProduct</h4>
 <hr />
 <section id="container" class="container">
-    <h3>The user's camera</h3>
-    <p>
-        If your platform supports the <strong>getUserMedia</strong> API call, you can try the real-time locating and decoding features.
-        Simply allow the page to access your web-cam and point it to a barcode. You can switch between <strong>Code128</strong>
-        and <strong>EAN</strong> to test different scenarios.
-        It works best if your camera has built-in auto-focus.
-    </p>
+
     <div class="controls">
         <fieldset class="input-group">
             <button class="stop">Stop</button>
@@ -123,19 +117,16 @@
     <a asp-page="Index">Back to List</a>
 </div>
 
-
 @section Scripts {
 
     <script>
         Quagga.onDetected(function (result) {
-
             var code = result.codeResult.code;
+
             if (App.lastResult !== code) {
                 App.lastResult = code;
                 var productQuantity = $("#UserProduct_Quantity").val();
                 var userId = $("#UserProduct_UserId").val();
-                alert(userId);
-                alert(productQuantity);
 
                 $.confirm({
                     title: 'Is the barcode is ' + code + '?',
@@ -152,68 +143,16 @@
                                             productId: resp.product.id
                                         };
 
-                                        $.post("/api/add-user-product", data).done(function (response) {
-                                            response.success === true ? $.alert("successfully addedd!")
-                                                : $.alert("Something went wrong!");
+                                        $.post("/api/user-product-to-bin", data).done(function (response) {
+                                            if (response.success === true) {
+                                                $.alert("successfully throwed!")
+                                            } else {
+                                                resp.message ? $.alert(resp.message) : $.alert("Something went wrong!");
+                                            }
 
                                         });
                                     } else {
-                                        $.confirm({
-                                            title: 'Add this product!',
-                                            content: '' +
-                                                '<form action="" class="formName">' +
-                                                '<div class="form-group">' +
-                                                '<label>Title</label>' +
-                                                '<input type="text" name="Product.Title" placeholder="Product Title" class="name form-control" required />' +
-                                                '<label>Description</label>' +
-                                                '<input type="text" name="Product.Description" placeholder="Product Description" class="name form-control" required />' +
-                                                '</div>' +
-                                                '</form>',
-                                            buttons: {
-                                                formSubmit: {
-                                                    text: 'Submit',
-                                                    btnClass: 'btn-blue',
-                                                    action: function () {
-                                                        var formData = new FormData(this.$content.find('form')[0]);
-                                                        formData.append("Product.Barcode", code);
-                                                        formData.append("__RequestVerificationToken", $('input:hidden[name="__RequestVerificationToken"]').val());
-                                                        ajaxPostWithVerificationToken(formData, function (resp) {
-                                                            $.get("/api/get-product",
-                                                                { code: code },
-                                                                function (resp) {
-                                                                    if (resp.success) {
-                                                                        var data = {
-                                                                            userId: userId,
-                                                                            quantity: productQuantity,
-                                                                            productId: resp.product.id
-                                                                        };
-
-                                                                        $.post("/api/add-user-product", data).done(function (response) {
-                                                                            response.success === true ? $.alert("successfully addedd!")
-                                                                                : $.alert("Something went wrong!");
-
-                                                                        });
-                                                                    }
-                                                                });
-                                                        }, function (err) {
-                                                            console.log(err)
-                                                        });
-                                                    }
-                                                },
-                                                cancel: function () {
-                                                    //close
-                                                },
-                                            },
-                                            onContentReady: function () {
-                                                // bind to events
-                                                var jc = this;
-                                                this.$content.find('form').on('submit', function (e) {
-                                                    // if the user submits the form by pressing enter in the field.
-                                                    e.preventDefault();
-                                                    jc.$$formSubmit.trigger('click'); // reference the button and click it
-                                                });
-                                            }
-                                        });
+                                        $.alert('We can\'t recognize thhis product \n Scan the barcode again!!');
                                     }
 
                                 });
@@ -225,15 +164,9 @@
                     }
                 });
 
-                //var $node = null, canvas = Quagga.canvas.dom.image;
-
-
-                //$node = $('<li><div class="thumbnail"><div class="imgWrapper"><img /></div><div class="caption"><h4 class="code"></h4></div></div></li>');
-                //$node.find("img").attr("src", canvas.toDataURL());
-                //$node.find("h4.code").html(code);
-                //$("#result_strip ul.thumbnails").prepend($node);
             }
         });
+
     </script>
 
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

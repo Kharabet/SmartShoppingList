@@ -9,6 +9,7 @@
 
 <p>
     <a asp-page="Create">Create New</a>
+    <a asp-page="Waste" style="float: right;">To trash bin!</a>
 </p>
 <table class="table">
     <thead>
@@ -38,9 +39,12 @@
                 @Html.DisplayFor(modelItem => item.Quantity)
             </td>
             <td>
-                @*@Html.ActionLink("Edit", "Edit", new { id=item.PrimaryKey  }) |
-                @Html.ActionLink("Details", "Details", new {  id=item.PrimaryKey  }) |
-                @Html.ActionLink("Delete", "Delete", new {  id=item.PrimaryKey  })*@
+                <a asp-page="./Edit" asp-route-productId="@item.ProductId">Edit</a> |
+                <a asp-page="./Delete" asp-route-productId="@item.ProductId">Delete</a> |
+
+                @*@Html.ActionLink("Edit", "./Edit", new {id = $"{item.UserId}-{item.ProductId}"}) |*@
+                @*@Html.ActionLink("Details", "Details", new {  id=item.PrimaryKey  }) |
+        @Html.ActionLink("Delete", "Delete", new {  id=item.PrimaryKey  })*@
             </td>
         </tr>
 }

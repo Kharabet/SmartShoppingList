@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -14,32 +15,36 @@ namespace ShoppingListArduino.Pages.UserProducts
     public class EditModel : PageModel
     {
         private readonly ShoppingListArduino.Data.ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public EditModel(ShoppingListArduino.Data.ApplicationDbContext context)
+        public EditModel(ShoppingListArduino.Data.ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         [BindProperty]
         public UserProduct UserProduct { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(string id)
+        public async Task<IActionResult> OnGetAsync(int productId)
         {
-            if (id == null)
+            if (productId == null)
             {
                 return NotFound();
             }
 
-            UserProduct = await _context.UserProduct
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+
+            UserProduct = _context.UserProduct
                 .Include(u => u.Product)
-                .Include(u => u.User).FirstOrDefaultAsync(m => m.UserId == id);
+                .FirstOrDefault(u => u.UserId == user.Id && u.ProductId == productId);
 
             if (UserProduct == null)
             {
                 return NotFound();
             }
-           ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Id");
-           ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
+            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Id");
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
             return Page();
         }
 
@@ -68,7 +73,7 @@ namespace ShoppingListArduino.Pages.UserProducts
                 }
             }
 
-            return RedirectToPage("./UserProducts/Index");
+            return RedirectToPage("./Index");
         }
 
         private bool UserProductExists(string id)

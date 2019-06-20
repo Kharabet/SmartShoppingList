@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -14,24 +15,30 @@ namespace ShoppingListArduino.Pages.UserProducts
     {
         private readonly ShoppingListArduino.Data.ApplicationDbContext _context;
 
-        public DeleteModel(ShoppingListArduino.Data.ApplicationDbContext context)
+        private readonly UserManager<ApplicationUser> _userManager;
+
+        public DeleteModel(ShoppingListArduino.Data.ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         [BindProperty]
         public UserProduct UserProduct { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(string id)
+        public async Task<IActionResult> OnGetAsync(int productId)
         {
-            if (id == null)
+            if (productId == null)
             {
                 return NotFound();
             }
 
-            UserProduct = await _context.UserProduct
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+
+            UserProduct = _context.UserProduct
                 .Include(u => u.Product)
-                .Include(u => u.User).FirstOrDefaultAsync(m => m.UserId == id);
+                .FirstOrDefault(u => u.UserId == user.Id && u.ProductId == productId);
+
 
             if (UserProduct == null)
             {
@@ -40,14 +47,17 @@ namespace ShoppingListArduino.Pages.UserProducts
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(string id)
+        public async Task<IActionResult> OnPostAsync(int productId)
         {
-            if (id == null)
+            if (productId == null)
             {
                 return NotFound();
             }
 
-            UserProduct = await _context.UserProduct.FindAsync(id);
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+
+
+            UserProduct = await _context.UserProduct.FindAsync(user.Id, productId);
 
             if (UserProduct != null)
             {
@@ -55,7 +65,7 @@ namespace ShoppingListArduino.Pages.UserProducts
                 await _context.SaveChangesAsync();
             }
 
-            return RedirectToPage("./UserProducts/Index");
+            return RedirectToPage("./Index");
         }
     }
 }

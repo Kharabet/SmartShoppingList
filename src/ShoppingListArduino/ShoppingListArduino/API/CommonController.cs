@@ -83,6 +83,70 @@ namespace ShoppingListArduino.API
 
         }
 
+        [HttpPost]
+        [Route("user-product-to-bin")]
+        public JObject UserProductToBin(string userId, int productId, int quantity)
+        {
+            var userProduct = _context.UserProduct.Find(userId, productId);
+            if (userProduct == null)
+            {
+                return JObject.FromObject(new { success = false, message = "У Вас дома уже не числится такой продукт!" });
+            }
+                userProduct.Quantity -= quantity;
+            if (userProduct.Quantity <= 0)
+            {
+                _context.UserProduct.Remove(userProduct);
+
+            }
+            try
+            {
+                _context.SaveChanges();
+                return JObject.FromObject(new { success = true });
+
+            }
+            catch (Exception ex)
+            {
+                return JObject.FromObject(new { success = false });
+
+            }
+
+        }
+        [HttpPost]
+        [Route("user-product-to-bin-by-barcode")]
+        public JObject UserProductToBinByBarcode(string userId, string barcode)
+        {
+            var product = _context.Products.FirstOrDefault(x => x.Barcode == barcode);
+            if (product == null)
+            {
+                return JObject.FromObject(new { success = false });
+            }
+
+            var userProduct = _context.UserProduct.Find(userId, product.Id);
+
+            if (userProduct == null)
+            {
+                return JObject.FromObject(new { success = true });
+            }
+
+            userProduct.Quantity -= 1;
+
+            if (userProduct.Quantity <= 0)
+            {
+                _context.UserProduct.Remove(userProduct);
+            }
+
+            try
+            {
+                _context.SaveChanges();
+                return JObject.FromObject(new { success = true });
+            }
+            catch (Exception ex)
+            {
+                return JObject.FromObject(new { success = false });
+            }
+
+        }
+
         // GET api/<controller>/5
         [HttpGet("{id}")]
         public string Get(int id)
