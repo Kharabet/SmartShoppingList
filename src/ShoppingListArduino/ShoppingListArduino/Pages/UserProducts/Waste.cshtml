@@ -143,7 +143,7 @@
                                             productId: resp.product.id
                                         };
 
-                                        $.post("/api/user-rpdoct-to-bin", data).done(function (response) {
+                                        $.post("/api/user-product-to-bin", data).done(function (response) {
                                             if (response.success === true) {
                                                 $.alert("successfully throwed!")
                                             } else {
