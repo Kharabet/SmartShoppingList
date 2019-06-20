@@ -64,7 +64,7 @@ namespace ShoppingListArduino.Pages.Products
                 }
             }
 
-            return RedirectToPage("./UserProducts/Index");
+            return RedirectToPage("./Index");
         }
 
         private bool ProductExists(int id)

@@ -32,6 +32,6 @@
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-page="./UserProducts/Index">Back to List</a>
+    @Html.ActionLink("Edit", "Edit", new {id = $"{Model.UserProduct.UserId}-{Model.UserProduct.ProductId}"} ) |
+    <a asp-page="./Index">Back to List</a>
 </div>
