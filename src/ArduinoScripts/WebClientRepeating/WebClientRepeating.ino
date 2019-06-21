@@ -15,7 +15,9 @@ char ssid[] = "Tenda_wifi";            // your network SSID (name)
 char pass[] = "kukuruza";         // your network password
 int status = WL_IDLE_STATUS;     // the Wifi radio's status
 
-char server[] = "arduino.cc";
+char server[] = "77.222.159.60";
+int port = 8402;
+char userId[] = "6fdf3b68-bb2d-4f4b-bddd-765553db3e06";
 
 unsigned long lastConnectionTime = 0;         // last time you connected to the server, in milliseconds
 const unsigned long postingInterval = 10000L; // delay between updates, in milliseconds
@@ -64,7 +66,13 @@ void loop()
   // if 10 seconds have passed since your last connection,
   // then connect again and send data
   if (millis() - lastConnectionTime > postingInterval) {
-    httpRequest();
+
+    char buf[128];
+    snprintf(buf, sizeof buf, "userId=%s&barcode=%s", userId, "somebarcode");
+    printf(buf);
+    printf("%zu", strlen(buf));
+    
+    httpRequest(buf);
   }
 }
 
@@ -78,7 +86,7 @@ void httpRequest()
   client.stop();
 
   // if there's a successful connection
-  if (client.connect(server, 80)) {
+  if (client.connect(server, port)) {
     Serial.println("Connecting...");
     
     // send the HTTP PUT request
@@ -86,6 +94,40 @@ void httpRequest()
     client.println(F("Host: arduino.cc"));
     client.println("Connection: close");
     client.println();
+
+    // note the time that the connection was made
+    lastConnectionTime = millis();
+  }
+  else {
+    // if you couldn't make a connection
+    Serial.println("Connection failed");
+  }
+}
+
+// this method makes a HTTP connection to the server
+void httpPostRequest(char content[])
+{
+  Serial.println();
+    
+  // close any connection before send a new request
+  // this will free the socket on the WiFi shield
+  client.stop();
+
+  // if there's a successful connection
+  if (client.connect(server, port)) {
+    Serial.println("Connecting...");
+    
+    // send the HTTP PUT request
+    client.println(F("POST /api/user-product-to-bin-by-barcode HTTP/1.1"));
+
+
+    char hostStr[128];
+    snprintf(hostStr, sizeof hostStr, "Host: %s", server);
+    client.println(F(hostStr));
+    client.println("content-type: application/json");
+    client.println("Content-Length: " + strlen(content));
+    client.println();
+    client.println(content);
 
     // note the time that the connection was made
     lastConnectionTime = millis();
