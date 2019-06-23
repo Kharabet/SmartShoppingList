@@ -15,8 +15,8 @@ char ssid[] = "Tenda_wifi";            // your network SSID (name)
 char pass[] = "kukuruza";         // your network password
 int status = WL_IDLE_STATUS;     // the Wifi radio's status
 
-char server[] = "77.222.159.60";
-int port = 8402;
+char server[] = "85b0a3e0.ngrok.io";
+int port = 80;
 char userId[] = "6fdf3b68-bb2d-4f4b-bddd-765553db3e06";
 
 unsigned long lastConnectionTime = 0;         // last time you connected to the server, in milliseconds
@@ -60,6 +60,7 @@ void loop()
   // this is for debugging purposes only
   while (client.available()) {
     char c = client.read();
+    Serial.println("answer:");
     Serial.write(c);
   }
 
@@ -69,10 +70,9 @@ void loop()
 
     char buf[128];
     snprintf(buf, sizeof buf, "userId=%s&barcode=%s", userId, "somebarcode");
-    printf(buf);
-    printf("%zu", strlen(buf));
     
-    httpRequest(buf);
+    
+    httpPostRequest(buf);
   }
 }
 
@@ -90,8 +90,8 @@ void httpRequest()
     Serial.println("Connecting...");
     
     // send the HTTP PUT request
-    client.println(F("GET /asciilogo.txt HTTP/1.1"));
-    client.println(F("Host: arduino.cc"));
+    client.println(("GET /asciilogo.txt HTTP/1.1"));
+    client.println(("Host: arduino.cc"));
     client.println("Connection: close");
     client.println();
 
@@ -108,7 +108,7 @@ void httpRequest()
 void httpPostRequest(char content[])
 {
   Serial.println();
-    
+     
   // close any connection before send a new request
   // this will free the socket on the WiFi shield
   client.stop();
@@ -118,16 +118,27 @@ void httpPostRequest(char content[])
     Serial.println("Connecting...");
     
     // send the HTTP PUT request
-    client.println(F("POST /api/user-product-to-bin-by-barcode HTTP/1.1"));
+    client.println(("POST /api/user-product-to-bin-by-barcode HTTP/1.1"));
+    Serial.println(("POST /api/user-product-to-bin-by-barcode HTTP/1.1"));
 
 
     char hostStr[128];
     snprintf(hostStr, sizeof hostStr, "Host: %s", server);
-    client.println(F(hostStr));
-    client.println("content-type: application/json");
-    client.println("Content-Length: " + strlen(content));
+    client.println((hostStr));
+    client.println("Content-type: application/x-www-form-urlencoded");
+    
+    char contentLength[128];
+    snprintf(contentLength, sizeof contentLength, "Content-Length: %d", strlen(content));
+    
+    client.println(contentLength);
     client.println();
     client.println(content);
+    
+    Serial.println((hostStr));
+    Serial.println("content-type: application/x-www-form-urlencoded");
+    Serial.println(contentLength);
+    Serial.println();
+    Serial.println(content);
 
     // note the time that the connection was made
     lastConnectionTime = millis();
