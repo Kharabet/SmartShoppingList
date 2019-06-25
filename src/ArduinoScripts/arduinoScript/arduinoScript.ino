@@ -57,9 +57,10 @@ void setup()
 void loop()
 {
     // put your main code here, to run repeatedly:
-
+ 
     recvWithStartEndMarkers();
     showNewData();
+    clientResponse();
 }
 
 void Send_command(byte command_array[], int lenth)
@@ -70,23 +71,27 @@ void Send_command(byte command_array[], int lenth)
         (Serial2.write(command_array[i]));
     }
     Serial.println("");
+    
 }
 
 void recvWithStartEndMarkers()
 {
     static boolean recvInProgress = false;
     static byte ndx = 0;
-    char startEndMarker = 'A';
-    char endMarker = 'D';
-    char rc;
+    byte startEndMarker = 13;
+    byte endMarker = 10;
+    byte rc;
 
-    while (Serial2.available() > 0 && newData == false)
+    if (Serial2.available()>0 && newData == false)
     {
+        
         rc = Serial2.read();
-
+        Serial.println(receivedChars);//output in hex ascii nubmers
+        Serial.println((char)rc);//output in hex ascii nubmers
+        
         if (rc != endMarker)
         {
-            receivedChars[ndx] = rc;
+            receivedChars[ndx] = (char)rc;
             ndx++;
             if (ndx >= numChars)
             {
@@ -106,21 +111,29 @@ void recvWithStartEndMarkers()
             }
         }
     }
+
+    
 }
+
+void clientResponse(){
+  if(client.available()){
+            Serial.println("answer:");
+  while (client.available())
+        {
+            char c = client.read();
+            Serial.write(c);
+        }
+  }
 }
 
 void showNewData()
 {
     if (newData == true)
     {
+      Serial.println("Processing new data");
         // if there's incoming data from the net connection send it out the serial port
         // this is for debugging purposes only
-        while (client.available())
-        {
-            char c = client.read();
-            Serial.println("answer:");
-            Serial.write(c);
-        }
+       
 
         // if 10 seconds have passed since your last connection,
         // then connect again and send data
@@ -128,6 +141,10 @@ void showNewData()
         {
             char buf[128];
             snprintf(buf, sizeof buf, "userId=%s&barcode=%s", userId, receivedChars);
+            
+            Serial.println("content:");
+            
+            Serial.println(buf);
             httpPostRequest(buf);
         }
         newData = false;

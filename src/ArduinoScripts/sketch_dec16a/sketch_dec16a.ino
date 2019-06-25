@@ -1,9 +1,9 @@
 
 void setup() {
   // put your setup code here, to run once:
-   Serial.begin(9600);
+   Serial.begin(115200);
 
-  Serial1.begin(9600);
+  Serial2.begin(9600);
   byte YSET[]={0x0A,0x04,0x31,0x00,0x00,0x59,0x53,0x45,0x54,0xFF,0xFD,0x7D};
   byte YLTK[]={0x0A,0x04,0x31,0x00,0x00,0x59,0x4c,0x54,0x4b,0xFF,0xFD,0x7E};
   byte NEEDANSW[]={0x0B,0x04,0x31,0x00,0x00,0x45,0x30,0x30,0x30,0x31,0xFF,0xFD,0xBB};
@@ -20,13 +20,13 @@ void setup() {
   byte EndMark0D[]= {0x0B,0x04,0x31,0x00,0x00,0x4A,0x32,0x30,0x30,0x31,0xFF, 0xFD,0xB4};
   
   
-  Send_command(YSET, sizeof(YSET));
-  Serial.println("YSET");
+  //Send_command(YSET, sizeof(YSET));
+  //Serial.println("YSET");
   
-  Send_command(EndMark0D, sizeof(EndMark0D));
-  Serial.println("EndMark0D");  
-  Send_command(YEND, sizeof(YEND));
-  Serial.println("YEND");
+  //Send_command(EndMark0D, sizeof(EndMark0D));
+  //Serial.println("EndMark0D");  
+  //Send_command(YEND, sizeof(YEND));
+  //Serial.println("YEND");
   
   //Send_command(NEEDANSW, sizeof(NEEDANSW));
   //Serial.println("NEEDANSW");
@@ -62,12 +62,14 @@ void setup() {
   
 
 }
-
+byte rc;
 void loop() {
   // put your main code here, to run repeatedly:
-  if(Serial1.available()>0)
+  if(Serial2.available()>0)
   {
-     Serial.println(Serial1.read(), HEX);//output in hex ascii nubmers
+    rc = Serial2.read();
+    char a = (char)rc;
+     Serial.println(a);//output in hex ascii nubmers
      
    }
 }
