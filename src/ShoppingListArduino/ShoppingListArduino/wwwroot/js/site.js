@@ -293,7 +293,7 @@ $(function () {
     });
 
 
-    function ajaxPostWithVerificationToken (formData, success, failure) {
+    window.ajaxPostWithVerificationToken  = function (formData, success, failure) {
         $.ajax({
             type: "POST",
             url: "/Products/Create",
