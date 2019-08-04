@@ -48,6 +48,33 @@ namespace ShoppingListArduino.API
            
         }
 
+        [HttpGet]
+        [Route("get-product-by-name")]
+        public JObject GetProductByName(string name)
+        {
+            var product = _context.Products.FirstOrDefault(x => x.Title.ToLower() == name || x.Description.ToLower() == name);
+
+            if (product == null)
+            {
+                return JObject.FromObject(new { success = false });
+            }
+            else
+            {
+                return JObject.FromObject(new
+                {
+                    success = true,
+                    product = new
+                    {
+                        id = product.Id,
+                        title = product.Title,
+                        description = product.Description,
+                        barcode = product.Barcode
+                    }
+                });
+            }
+
+        }
+
 
         [HttpPost]
         [Route("add-user-product")]

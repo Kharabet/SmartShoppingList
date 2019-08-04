@@ -5,12 +5,24 @@
     ViewData["Title"] = "Index";
 }
 
+
+<input type="hidden" id="UserProduct_UserId" value="@ViewBag.UserId"/>
+<input type="hidden" id="productsDb" value="@ViewBag.ProductsDb"/>
+
 <h2>Index</h2>
 
 <p>
     <a asp-page="Create" class="btn btn-primary">Create New</a>
     <a asp-page="Waste" class="btn btn-primary" style="float: right;">To trash bin!</a>
 </p>
+<p class="hints"></p>
+<div>
+    <p class="output"><em>...diagnostic messages</em></p>
+</div>
+<div>
+    <p>Click the button to start/stop recording</p>
+    <button id="recButton" class="start-record"></button>
+</div>
 <table class="table">
     <thead>
         <tr>
@@ -18,8 +30,8 @@
                 @Html.DisplayNameFor(model => model.UserProduct[0].Product)
             </th>
             @*<th>
-                @Html.DisplayNameFor(model => model.UserProduct[0].User)
-            </th>*@
+                    @Html.DisplayNameFor(model => model.UserProduct[0].User)
+                </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.UserProduct[0].Quantity)
             </th>
@@ -27,26 +39,27 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.UserProduct) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Product.Title)
-            </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.User.Id)
-            </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.Quantity)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-productId="@item.ProductId">Edit</a> |
-                <a asp-page="./Delete" asp-route-productId="@item.ProductId">Delete</a> 
+        @foreach (var item in Model.UserProduct)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Title)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.User.Id)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-productId="@item.ProductId">Edit</a> |
+                    <a asp-page="./Delete" asp-route-productId="@item.ProductId">Delete</a>
 
-                @*@Html.ActionLink("Edit", "./Edit", new {id = $"{item.UserId}-{item.ProductId}"}) |*@
-                @*@Html.ActionLink("Details", "Details", new {  id=item.PrimaryKey  }) |
-        @Html.ActionLink("Delete", "Delete", new {  id=item.PrimaryKey  })*@
-            </td>
-        </tr>
-}
+                    @*@Html.ActionLink("Edit", "./Edit", new {id = $"{item.UserId}-{item.ProductId}"}) |*@
+                    @*@Html.ActionLink("Details", "Details", new {  id=item.PrimaryKey  }) |
+                        @Html.ActionLink("Delete", "Delete", new {  id=item.PrimaryKey  })*@
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

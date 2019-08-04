@@ -4,13 +4,6 @@
 // Write your Javascript code.
 
 $(function () {
-
-
-
-
-
-
-
     var resultCollector = Quagga.ResultCollector.create({
         capture: true,
         capacity: 20,

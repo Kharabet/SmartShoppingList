@@ -94,13 +94,7 @@
     </div>
     <div id="interactive" class="viewport"></div>
 </section>*@
-<p class="hints"></p>
-<div>
-    <p class="output"><em>...diagnostic messages</em></p>
-</div>
-<div>
-    <div class="btn btn-primary start-record">Start</div>
-</div>
+
 <div class="row hidden">
     <div class="col-md-4">
         <form method="post">
@@ -159,7 +153,7 @@
                                         $.post("/api/add-user-product", data).done(function (response) {
                                             if (response.success === true) {
                                                 $.alert("successfully addedd!");
-                                                document.location.reload();
+                                                document.location.reload(true);
                                             } else {
                                                  $.alert("Something went wrong!");
                                             }
@@ -199,7 +193,7 @@
                                                                         $.post("/api/add-user-product", data).done(function (response) {
                                                                             if (response.success === true) {
                                                                                 $.alert("successfully addedd!");
-                                                                                document.location.reload();
+                                                                                document.location.reload(true);
                                                                             } else {
                                                                                 $.alert("Something went wrong!");
                                                                             }

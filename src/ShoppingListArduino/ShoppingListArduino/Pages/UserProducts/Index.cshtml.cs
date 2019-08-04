@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using ShoppingListArduino.Data;
 using ShoppingListArduino.Models;
 
@@ -27,8 +29,9 @@ namespace ShoppingListArduino.Pages.UserProducts
 
         public async Task OnGetAsync()
         {
-            var user = await _userManager.GetUserAsync(HttpContext.User); 
-            
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            ViewData["UserId"] = user.Id;
+            ViewData["ProductsDb"] = JsonConvert.SerializeObject(_context.Products.ToList().Select(x => x.Title));
             UserProduct = await _context.UserProduct
                 .Include(u => u.Product)
                 .Where(u => u.UserId == user.Id).ToListAsync();
