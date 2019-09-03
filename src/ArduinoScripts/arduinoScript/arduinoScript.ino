@@ -1,7 +1,7 @@
 #include "WiFiEsp.h"
 
-char ssid[] = "Tenda_wifi";  // your network SSID (name)
-char pass[] = "kukuruza";    // your network password
+char ssid[] = "Dekanat";  // your network SSID (name)
+char pass[] = "317_FICT_Dekanat";    // your network password
 int status = WL_IDLE_STATUS; // the Wifi radio's status
 
 char server[] = "85b0a3e0.ngrok.io";
