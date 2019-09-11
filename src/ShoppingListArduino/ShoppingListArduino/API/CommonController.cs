@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json.Linq;
 using ShoppingListArduino.Data;
 using ShoppingListArduino.Models;
@@ -15,10 +18,12 @@ namespace ShoppingListArduino.API
     public class CommonController : Controller
     {
         private ApplicationDbContext _context;
+        private IMemoryCache _cache;
 
-        public CommonController(ApplicationDbContext context)
+        public CommonController(ApplicationDbContext context, IMemoryCache memoryCache)
         {
             _context = context;
+            _cache = memoryCache;
         }
 
         // GET: api/<controller>
@@ -80,16 +85,15 @@ namespace ShoppingListArduino.API
         [Route("add-user-product")]
         public JObject AddUserProduct(string userId, int productId, int quantity)
         {
-            var userProduct = _context.UserProduct.Find(userId, productId);
+            var userProduct = _context.UserProducts.FirstOrDefault(p => p.UserId == userId && p.ProductId == productId);
             if (userProduct == null)
             {
-                _context.UserProduct.Add(new UserProduct()
+                _context.UserProducts.Add(new UserProduct()
                 {
                     UserId = userId,
                     ProductId = productId,
                     Quantity = quantity
                 });
-
             }
             else
             {
@@ -107,14 +111,64 @@ namespace ShoppingListArduino.API
                 return JObject.FromObject(new { success = false });
 
             }
+        }
+
+        [HttpPost]
+        [Route("add-unassigned-rfid")]
+        public JObject AddUnassignedRfid(string rfid, string userId)
+        {
+            try
+            {
+                var result = _cache.Set(userId, rfid, TimeSpan.FromMinutes(20.0));
+                return JObject.FromObject(new { success = true });
+
+            }
+            catch (Exception ex)
+            {
+                return JObject.FromObject(new { success = false });
+
+            }
+        }
+
+        [HttpPost]
+        [Route("bind-unassigned-rfid-to-user-product")]
+        public JObject BindUnassignedRfidToUserProduct(int userProductId)
+        {
+            var userProduct = _context.UserProducts.Find(userProductId);
+            string unassignedRfid;
+            if (_cache.TryGetValue(userProduct.UserId, out unassignedRfid))
+            {
+                _context.Add(new UserProductRfid
+                {
+                    UserProductId = userProductId,
+                    Rfid = unassignedRfid
+                });
+                _cache.Remove(userProduct.UserId);
+
+                try
+                {
+                    _context.SaveChanges();
+                    return JObject.FromObject(new { success = true, message = "RFID успешно привязан к товару!" });
+
+                }
+                catch (Exception ex)
+                {
+                    return JObject.FromObject(new { success = false, message = "Ошибка при сохранении в базу!" });
+
+                }
+            }
+
+            return JObject.FromObject(new { success = false, message = "Свободного RFID не найдено. Просканируйте новый RFID!" });
 
         }
+
+
 
         [HttpPost]
         [Route("user-product-to-bin")]
         public JObject UserProductToBin(string userId, int productId, int quantity)
         {
-            var userProduct = _context.UserProduct.Find(userId, productId);
+            var userProduct = _context.UserProducts.FirstOrDefault(p => p.UserId == userId && p.ProductId == productId);
             if (userProduct == null)
             {
                 return JObject.FromObject(new { success = false, message = "У Вас дома уже не числится такой продукт!" });
@@ -122,8 +176,8 @@ namespace ShoppingListArduino.API
                 userProduct.Quantity -= quantity;
             if (userProduct.Quantity <= 0)
             {
-                _context.UserProduct.Remove(userProduct);
-
+                _context.UserProductRfids.RemoveRange(userProduct.UserProductRfids);
+                _context.UserProducts.Remove(userProduct);
             }
             try
             {
@@ -136,8 +190,8 @@ namespace ShoppingListArduino.API
                 return JObject.FromObject(new { success = false });
 
             }
-
         }
+
         [HttpPost]
         [Route("user-product-to-bin-by-barcode")]
         public JObject UserProductToBinByBarcode(string userId, string barcode)
@@ -148,7 +202,7 @@ namespace ShoppingListArduino.API
                 return JObject.FromObject(new { success = false });
             }
 
-            var userProduct = _context.UserProduct.Find(userId, product.Id);
+            var userProduct = _context.UserProducts.FirstOrDefault(p => p.UserId == userId && p.ProductId == product.Id);
 
             if (userProduct == null)
             {
@@ -159,7 +213,7 @@ namespace ShoppingListArduino.API
 
             if (userProduct.Quantity <= 0)
             {
-                _context.UserProduct.Remove(userProduct);
+                _context.UserProducts.Remove(userProduct);
             }
 
             try
@@ -173,6 +227,51 @@ namespace ShoppingListArduino.API
             }
 
         }
+
+        [HttpPost]
+        [Route("user-product-to-bin-by-rfid")]
+        public JObject UserProductToBinByRfid(string rfid)
+        {
+            var userProductRfid = _context.UserProductRfids
+                .Include(x => x.UserProduct)
+                .FirstOrDefault(x => x.Rfid == rfid);
+            if (userProductRfid == null)
+            {
+                return JObject.FromObject(new { success = false });
+            }
+
+            var userProduct = userProductRfid.UserProduct;
+
+            if (userProduct == null)
+            {
+                return JObject.FromObject(new { success = false });
+            }
+
+            userProduct.Quantity -= 1;
+
+            _context.UserProductRfids.Remove(userProductRfid);
+
+
+            if (userProduct.Quantity <= 0)
+            {
+                _context.UserProductRfids.RemoveRange(userProduct.UserProductRfids);
+                _context.UserProducts.Remove(userProduct);
+            }
+
+            try
+            {
+                _context.SaveChanges();
+                return JObject.FromObject(new { success = true });
+            }
+            catch (Exception ex)
+            {
+                return JObject.FromObject(new { success = false });
+            }
+
+        }
+
+
+
 
         // GET api/<controller>/5
         [HttpGet("{id}")]

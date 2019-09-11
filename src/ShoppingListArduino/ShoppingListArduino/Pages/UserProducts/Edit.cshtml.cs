@@ -35,9 +35,9 @@ namespace ShoppingListArduino.Pages.UserProducts
 
             var user = await _userManager.GetUserAsync(HttpContext.User);
 
-            UserProduct = _context.UserProduct
+            UserProduct = await _context.UserProducts
                 .Include(u => u.Product)
-                .FirstOrDefault(u => u.UserId == user.Id && u.ProductId == productId);
+                .FirstOrDefaultAsync(u => u.UserId == user.Id && u.ProductId == productId);
 
             if (UserProduct == null)
             {
@@ -78,7 +78,7 @@ namespace ShoppingListArduino.Pages.UserProducts
 
         private bool UserProductExists(string id)
         {
-            return _context.UserProduct.Any(e => e.UserId == id);
+            return _context.UserProducts.Any(e => e.UserId == id);
         }
     }
 }

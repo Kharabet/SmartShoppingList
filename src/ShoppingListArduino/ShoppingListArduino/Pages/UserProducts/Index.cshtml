@@ -53,8 +53,9 @@
                 </td>
                 <td>
                     <a asp-page="./Edit" asp-route-productId="@item.ProductId">Edit</a> |
-                    <a asp-page="./Delete" asp-route-productId="@item.ProductId">Delete</a>
-
+                    <a asp-page="./Delete" asp-route-productId="@item.ProductId">Delete</a>|
+                    <button data-user-product-id="@item.Id" class="bind-rfid btn btn-primary">Add RFID</button>|
+                    
                     @*@Html.ActionLink("Edit", "./Edit", new {id = $"{item.UserId}-{item.ProductId}"}) |*@
                     @*@Html.ActionLink("Details", "Details", new {  id=item.PrimaryKey  }) |
                         @Html.ActionLink("Delete", "Delete", new {  id=item.PrimaryKey  })*@

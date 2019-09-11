@@ -36,10 +36,10 @@ namespace ShoppingListArduino.Pages.UserProducts
                 return Page();
             }
 
-            var userProduct = _context.UserProduct.Find(UserProduct.UserId, UserProduct.ProductId);
+            var userProduct = _context.UserProducts.FirstOrDefault(p => p.UserId == UserProduct.UserId && p.ProductId == UserProduct.ProductId);
             if (userProduct == null)
             {
-                _context.UserProduct.Add(UserProduct);
+                _context.UserProducts.Add(UserProduct);
 
             }
             else

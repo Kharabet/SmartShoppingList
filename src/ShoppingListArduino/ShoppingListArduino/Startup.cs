@@ -48,7 +48,7 @@ namespace ShoppingListArduino
                 options.Password.RequiredUniqueChars = 1;
             });
 
-
+            services.AddMemoryCache();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
                 .AddRazorPagesOptions(options =>
                 {

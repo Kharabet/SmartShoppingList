@@ -32,7 +32,7 @@ namespace ShoppingListArduino.Pages.UserProducts
             var user = await _userManager.GetUserAsync(HttpContext.User);
             ViewData["UserId"] = user.Id;
             ViewData["ProductsDb"] = JsonConvert.SerializeObject(_context.Products.ToList().Select(x => x.Title));
-            UserProduct = await _context.UserProduct
+            UserProduct = await _context.UserProducts
                 .Include(u => u.Product)
                 .Where(u => u.UserId == user.Id).ToListAsync();
         }

@@ -15,7 +15,9 @@ namespace ShoppingListArduino.Data
             : base(options)
         {
         }
-        public DbSet<ShoppingListArduino.Models.Product> Products { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<UserProduct> UserProducts { get; set; }
+        public DbSet<UserProductRfid> UserProductRfids { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -25,7 +27,7 @@ namespace ShoppingListArduino.Data
 
             modelBuilder.Entity<UserProduct>()
                 .ToTable("userproduct")
-                .HasKey(t => new { t.UserId, t.ProductId});
+                .HasKey(t =>t.Id);
 
             modelBuilder.Entity<UserProduct>()
                 .HasOne(pt => pt.User)
@@ -36,6 +38,16 @@ namespace ShoppingListArduino.Data
                 .HasOne(pt => pt.Product)
                 .WithMany(t => t.UserProducts)
                 .HasForeignKey(pt => pt.ProductId);
+
+            modelBuilder.Entity<UserProductRfid>()
+                .ToTable("userproductrfids")
+                .HasKey(x => x.Id);
+
+            modelBuilder.Entity<UserProductRfid>()
+                .HasOne(pt => pt.UserProduct)
+                .WithMany(p => p.UserProductRfids)
+                .HasForeignKey(pt => pt.UserProductId);
+
 
             modelBuilder.Entity<Product>()
                 .HasData(new Product

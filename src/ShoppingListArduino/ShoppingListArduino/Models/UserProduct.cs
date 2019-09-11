@@ -7,6 +7,8 @@ namespace ShoppingListArduino.Models
 {
     public class UserProduct
     {
+        public int Id { get; set; }
+
         public int ProductId { get; set; }
         public Product Product { get; set; }
 
@@ -14,5 +16,8 @@ namespace ShoppingListArduino.Models
         public ApplicationUser User { get; set; }
 
         public int Quantity { get; set; }
+
+        public List<UserProductRfid> UserProductRfids { get; set; }
+
     }
 }

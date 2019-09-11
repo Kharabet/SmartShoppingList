@@ -28,7 +28,7 @@ namespace ShoppingListArduino.Pages.UserProducts
                 return NotFound();
             }
 
-            UserProduct = await _context.UserProduct
+            UserProduct = await _context.UserProducts
                 .Include(u => u.Product)
                 .Include(u => u.User).FirstOrDefaultAsync(m => m.UserId == id);
 
