@@ -1,0 +1,22 @@
+для прошивки
+https://esp8266.ru/esp8266-podkluchenie-obnovlenie-proshivki/
+https://i1.wp.com/esp8266.ru/wp-content/uploads/scheme-full.jpg?resize=1024%2C508&ssl=1
+
+
+usb-ttl		rc522		rfid		
+gnd						gnd
+tx				rx
+rx				tx
+		sda		gpio4
+		sck		gpio14
+		mosi		gpio13
+		miso		gpio12
+		gnd				gnd
+		rst		gpio5
+		3.3v				3.3v
+				chpd	10k	3.3v
+				vcc		3.3v
+				gpio0  10k btn  3.3V  	WORK MODE
+					btn	GND	FIRMWARE MODE
+				gpio2	10k	3.3v
+				gpio15	10k	GND
