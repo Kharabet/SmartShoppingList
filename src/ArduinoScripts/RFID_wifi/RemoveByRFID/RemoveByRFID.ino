@@ -1,11 +1,15 @@
-// Скетч для отправки запросов на /api/add-unassigned-rfid. Для того чтобы добавить в кеш серверя "висящий" RFID. 
-// В последствии его должен привязать к товару пользователь через веб сайт.
+// Скетч для отправки запросов на /api/user-product-to-bin-by-rfid. Для того чтобы удалить из списка имеюзщихся товаров связанный с этим рфидом товар. 
 
 #include "MFRC522.h"
 
 #include <ESP8266HTTPClient.h>
 
 #include <ESP8266WiFi.h>
+
+
+#include <DNSServer.h>
+#include <ESP8266WebServer.h>
+#include <WiFiManager.h>         //https://github.com/tzapu/WiFiManager
 
 #define RST_PIN 5 // RST-PIN for RC522 - RFID - SPI - Modul GPIO5 
 #define SS_PIN 4 // SDA-PIN for RC522 - RFID - SPI - Modul GPIO4 
@@ -15,12 +19,30 @@ char ssid[] = "Tenda_wifi"; // your network SSID (name)
 char password[] = "kukuruza"; // your network password
 int status = WL_IDLE_STATUS; // the Wifi radio's status
 
-char server[] = "http://2d91f44c.ngrok.io/api/user-product-to-bin-by-rfid";
+char server[] = "http://arduinoshoppinglist.serveo.net/api/user-product-to-bin-by-rfid";
 int port = 80;
 char userId[] = "6fdf3b68-bb2d-4f4b-bddd-765553db3e06";
 
 void setup() {
   Serial.begin(74880); // Initialize serial communications
+
+  //WiFiManager
+    //Local intialization. Once its business is done, there is no need to keep it around
+    WiFiManager wifiManager;
+    //reset saved settings
+    //wifiManager.resetSettings();
+    
+    //set custom ip for portal
+    //wifiManager.setAPStaticIPConfig(IPAddress(10,0,1,1), IPAddress(10,0,1,1), IPAddress(255,255,255,0));
+
+    //fetches ssid and pass from eeprom and tries to connect
+    //if it does not connect it starts an access point with the specified name
+    //here  "AutoConnectAP"
+    //and goes into a blocking loop awaiting configuration
+    wifiManager.autoConnect("AutoConnectAP");
+
+
+    
   SPI.begin(); // Init SPI bus
   mfrc522.PCD_Init(); // Init MFRC522
 

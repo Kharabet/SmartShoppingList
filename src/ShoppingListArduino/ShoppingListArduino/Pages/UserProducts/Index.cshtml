@@ -6,8 +6,8 @@
 }
 
 
-<input type="hidden" id="UserProduct_UserId" value="@ViewBag.UserId"/>
-<input type="hidden" id="productsDb" value="@ViewBag.ProductsDb"/>
+<input type="hidden" id="UserProduct_UserId" value="@ViewBag.UserId" />
+<input type="hidden" id="productsDb" value="@ViewBag.ProductsDb" />
 
 <h2>Index</h2>
 
@@ -55,7 +55,7 @@
                     <a asp-page="./Edit" asp-route-productId="@item.ProductId">Edit</a> |
                     <a asp-page="./Delete" asp-route-productId="@item.ProductId">Delete</a>|
                     <button data-user-product-id="@item.Id" class="bind-rfid btn btn-primary">Add RFID</button>|
-                    
+
                     @*@Html.ActionLink("Edit", "./Edit", new {id = $"{item.UserId}-{item.ProductId}"}) |*@
                     @*@Html.ActionLink("Details", "Details", new {  id=item.PrimaryKey  }) |
                         @Html.ActionLink("Delete", "Delete", new {  id=item.PrimaryKey  })*@
@@ -64,3 +64,9 @@
         }
     </tbody>
 </table>
+
+
+@section Scripts{
+    <script src="~/js/WebSpeech.js"></script>
+
+}

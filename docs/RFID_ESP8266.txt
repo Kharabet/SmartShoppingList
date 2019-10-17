@@ -3,7 +3,7 @@ https://esp8266.ru/esp8266-podkluchenie-obnovlenie-proshivki/
 https://i1.wp.com/esp8266.ru/wp-content/uploads/scheme-full.jpg?resize=1024%2C508&ssl=1
 
 
-usb-ttl		rc522		rfid		
+usb-ttl		rc522		ESP		
 gnd						gnd
 tx				rx
 rx				tx
@@ -20,3 +20,8 @@ rx				tx
 					btn	GND	FIRMWARE MODE
 				gpio2	10k	3.3v
 				gpio15	10k	GND
+
+
+----| RFID - UNASSIGNED RFID.INO
+
+____--- RFID - REMIVE BY RFID.INO

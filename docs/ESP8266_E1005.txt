@@ -1,0 +1,18 @@
+E1005		ESP8266		TTL-USB		
+2pin						5V
+3pin						GND
+4pin(RX)	TX		RX(для проишвки)
+5pin(TX)  R1кOm  RX	R2кOm	RX(для проишвки)GND
+12pin						датчик движения
+		GND				GND
+		GPIO2		RX(for debug)	
+		GPIO0 (для прошивки - в землю, для запуска чере 10кОм в 3.3в)	
+		CH_PD	10kOm			3.3V
+		RESET висит
+		VCC				3.3V
+
+
+
+резисторный делитель https://habr.com/ru/post/390593/
+прошивка https://esp8266.ru/esp8266-podkluchenie-obnovlenie-proshivki/#full
+UART1 http://esp8266.ru/arduino-ide-esp8266/#serial

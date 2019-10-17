@@ -20,7 +20,7 @@ char ssid[] = "Tenda_wifi"; // your network SSID (name)
 char password[] = "kukuruza"; // your network password
 int status = WL_IDLE_STATUS; // the Wifi radio's status
 
-char server[] = "http://2d91f44c.ngrok.io/api/add-unassigned-rfid";
+char server[] = "http://arduinoshoppinglist.serveo.net/api/add-unassigned-rfid";
 int port = 80;
 char userId[] = "6fdf3b68-bb2d-4f4b-bddd-765553db3e06";
 
@@ -31,7 +31,7 @@ void setup() {
     //Local intialization. Once its business is done, there is no need to keep it around
     WiFiManager wifiManager;
     //reset saved settings
-    wifiManager.resetSettings();
+    //wifiManager.resetSettings();
     
     //set custom ip for portal
     //wifiManager.setAPStaticIPConfig(IPAddress(10,0,1,1), IPAddress(10,0,1,1), IPAddress(255,255,255,0));

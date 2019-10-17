@@ -211,14 +211,14 @@ namespace ShoppingListArduino.API
             var product = _context.Products.FirstOrDefault(x => x.Barcode == barcode);
             if (product == null)
             {
-                return JObject.FromObject(new { success = false });
+                return JObject.FromObject(new { success = false, message="thtere is no such product in DB" });
             }
 
             var userProduct = _context.UserProducts.FirstOrDefault(p => p.UserId == userId && p.ProductId == product.Id);
 
             if (userProduct == null)
             {
-                return JObject.FromObject(new { success = true });
+                return JObject.FromObject(new { success = true,  message = "thtere is no such userproduct in DB for this user" });
             }
 
             userProduct.Quantity -= 1;
