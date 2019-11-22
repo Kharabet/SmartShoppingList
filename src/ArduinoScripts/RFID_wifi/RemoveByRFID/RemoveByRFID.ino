@@ -15,18 +15,18 @@
 #define SS_PIN 4 // SDA-PIN for RC522 - RFID - SPI - Modul GPIO4 
 MFRC522 mfrc522(SS_PIN, RST_PIN); // Create MFRC522 instance
 
-char ssid[] = "Tenda_wifi"; // your network SSID (name)
-char password[] = "kukuruza"; // your network password
+//char ssid[] = "Linksys09354"; // your network SSID (name)
+//char password[] = "acts_308"; // your network password
 int status = WL_IDLE_STATUS; // the Wifi radio's status
 
-char server[] = "http://arduinoshoppinglist.serveo.net/api/user-product-to-bin-by-rfid";
+char server[] = "http://shoppinglistarduino.localtunnel.me/api/user-product-to-bin-by-rfid";
 int port = 80;
 char userId[] = "6fdf3b68-bb2d-4f4b-bddd-765553db3e06";
 
 void setup() {
   Serial.begin(74880); // Initialize serial communications
 
-  //WiFiManager
+    //WiFiManager
     //Local intialization. Once its business is done, there is no need to keep it around
     WiFiManager wifiManager;
     //reset saved settings
@@ -39,7 +39,7 @@ void setup() {
     //if it does not connect it starts an access point with the specified name
     //here  "AutoConnectAP"
     //and goes into a blocking loop awaiting configuration
-    wifiManager.autoConnect("AutoConnectAP");
+    wifiManager.autoConnect("AutoConnectAP_RemoveRFID");
 
 
     
@@ -51,8 +51,9 @@ void setup() {
   WiFi.mode(WIFI_OFF); //Prevents reconnection issue (taking too long to connect)
   delay(1000);
   WiFi.mode(WIFI_STA); //This line hides the viewing of ESP as wifi hotspot
-
-  WiFi.begin(ssid, password); //Connect to your WiFi router
+ 
+  WiFi.begin();  //Connect to your WiFi router
+ 
   Serial.println("");
 
   Serial.print("Connecting");
@@ -65,7 +66,7 @@ void setup() {
   //If connection successful show IP address in serial monitor
   Serial.println("");
   Serial.print("Connected to ");
-  Serial.println(ssid);
+  //Serial.println(ssid);
   Serial.print("IP address: ");
   Serial.println(WiFi.localIP()); //IP address assigned to your ESP
 

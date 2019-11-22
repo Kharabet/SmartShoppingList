@@ -8,11 +8,11 @@
 #include <ESP8266WebServer.h>
 #include <WiFiManager.h> //https://github.com/tzapu/WiFiManager
 
-char server[] = "http://arduinoshoppinglist.serveo.net/api/user-product-to-bin-by-barcode";
+char server[] = "http://shoppinglistarduino.localtunnel.me/api/user-product-to-bin-by-barcode";
 int port = 80;
 char userId[] = "6fdf3b68-bb2d-4f4b-bddd-765553db3e06";
 
-char ssid[] = "Tenda_wifi"; // your network SSID (name)
+//char ssid[] = "Tenda_wifi"; // your network SSID (name)
 
 unsigned long lastConnectionTime = 0;         // last time you connected to the server, in milliseconds
 const unsigned long postingInterval = 10000L; // delay between updates, in milliseconds
@@ -42,7 +42,7 @@ void setup()
     //if it does not connect it starts an access point with the specified name
     //here  "AutoConnectAP"
     //and goes into a blocking loop awaiting configuration
-    wifiManager.autoConnect("AutoConnectAP");
+    wifiManager.autoConnect("AutoConnectAP_E1005");
 
     WiFi.mode(WIFI_OFF); //Prevents reconnection issue (taking too long to connect)
     delay(1000);
@@ -62,7 +62,7 @@ void setup()
     //If connection successful show IP address in serial monitor
     Serial1.println("");
     Serial1.print("Connected to ");
-    Serial1.println(ssid);
+    //Serial1.println(ssid);
     Serial1.print("IP address: ");
     Serial1.println(WiFi.localIP()); //IP address assigned to your ESP
 }
@@ -89,8 +89,8 @@ void recvWithStartEndMarkers()
 {
     static boolean recvInProgress = false;
     static byte ndx = 0;
-    byte startEndMarker = 13;
-    byte endMarker = 10;
+    byte startEndMarker = 13; //ascii symbol
+    byte endMarker = 10; //asciisymbol
     byte rc;
 
     if (Serial.available() > 0 && newData == false)
