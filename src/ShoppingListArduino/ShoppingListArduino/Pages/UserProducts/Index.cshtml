@@ -9,64 +9,74 @@
 <input type="hidden" id="UserProduct_UserId" value="@ViewBag.UserId" />
 <input type="hidden" id="productsDb" value="@ViewBag.ProductsDb" />
 
-<h2>Index</h2>
+@*<h2>Index</h2>*@
 
-<p>
-    <a asp-page="Create" class="btn btn-primary">Create New</a>
-    <a asp-page="Waste" class="btn btn-primary" style="float: right;">To trash bin!</a>
+<p style="margin-top: 20px">
+    <a asp-page="Create" class="btn btn-primary">Додати товар</a>
+    <a asp-page="Waste" class="btn btn-primary" style="float: right;">Видалити товар</a>
 </p>
-<p class="hints"></p>
-<div>
-    <p class="output"><em>...diagnostic messages</em></p>
-</div>
-<div>
-    <p>Click the button to start/stop recording</p>
-    <button id="recButton" class="start-record"></button>
-</div>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.UserProduct[0].Product)
-            </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.UserProduct[0].User)
-                </th>*@
-            <th>
-                @Html.DisplayNameFor(model => model.UserProduct[0].Quantity)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.UserProduct)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Product.Title)
-                </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.User.Id)
-                    </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.Quantity)
-                </td>
-                <td>
-                    <a asp-page="./Edit" asp-route-productId="@item.ProductId">Edit</a> |
-                    <a asp-page="./Delete" asp-route-productId="@item.ProductId">Delete</a>|
-                    <button data-user-product-id="@item.Id" class="bind-rfid btn btn-primary">Add RFID</button>|
 
-                    @*@Html.ActionLink("Edit", "./Edit", new {id = $"{item.UserId}-{item.ProductId}"}) |*@
-                    @*@Html.ActionLink("Details", "Details", new {  id=item.PrimaryKey  }) |
-                        @Html.ActionLink("Delete", "Delete", new {  id=item.PrimaryKey  })*@
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+<div class="mt-20" style="display: flex">
+    <div>
+        <button id="recButton" class="start-record"></button>
+    </div>
+    <div>
+        <p class="hints"></p>
+        <p class="output"><em>...діагностичні повідомлення</em></p>
+    </div>
+</div>
+<ul class="list-group mt-20">
+    @foreach (var item in Model.UserProduct)
+    {
+    <li class="list-group-item">
+        @Html.DisplayFor(modelItem => item.Product.Title)
+        <div class="badge-wrapper">
+        <span class="badge">@Html.DisplayFor(modelItem => item.Quantity)</span>
+
+        <div data-overflow-menu class="bx--overflow-menu">
+            <button class="bx--overflow-menu__trigger bx--tooltip__trigger bx--tooltip--a11y bx--tooltip--left bx--tooltip--align-start"
+                    aria-haspopup="true" aria-expanded="false" id="example-qztjk1hc1u9-trigger" aria-controls="example-qztjk1hc1u9">
+                
+                <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--overflow-menu__icon" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="3" r="1"></circle><circle cx="8" cy="8" r="1"></circle><circle cx="8" cy="13" r="1"></circle></svg>
+            </button>
+            <div class="bx--overflow-menu-options bx--overflow-menu--flip" tabindex="-1"
+                 data-floating-menu-direction="bottom" role="menu" aria-labelledby="example-qztjk1hc1u9-trigger"
+                 id="example-qztjk1hc1u9">
+                <ul class="bx--overflow-menu-options__content">
+                    <li class="bx--overflow-menu-options__option">
+                        <a ahref="#" data-user-product-id="@item.Id"
+                           role="menuitem" class="bx--overflow-menu-options__btn bind-rfid">
+                            <span>Bind RFID</span>
+                        </a>
+                       
+                    </li>
+                   <li class="bx--overflow-menu-options__option">
+                        <a asp-page="./Edit" asp-route-productId="@item.ProductId"
+                           role="menuitem" class="bx--overflow-menu-options__btn">
+                            <span>Edit</span>
+                        </a>
+                       
+                    </li>
+                   
+                    <li class="bx--overflow-menu-options__option bx--overflow-menu-options__option--danger">
+                        <a  asp-page="./Delete" asp-route-productId="@item.ProductId" class="bx--overflow-menu-options__btn" role="menuitem">
+                            <span class="bx--overflow-menu-options__option-content">
+                                Delete
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+                <span tabindex="0"></span>
+            </div>
+        </div>
+        </div>
+    </li>
+    }
+</ul>
 
 
 @section Scripts{
+    <script src="https://unpkg.com/carbon-components/scripts/carbon-components.min.js"></script>
     <script src="~/js/WebSpeech.js"></script>
 
 }

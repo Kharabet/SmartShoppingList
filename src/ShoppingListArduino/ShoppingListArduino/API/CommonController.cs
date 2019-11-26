@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
 using Newtonsoft.Json.Linq;
 using ShoppingListArduino.Data;
 using ShoppingListArduino.Models;
@@ -35,7 +36,11 @@ namespace ShoppingListArduino.API
 
             if (product == null)
             {
-                return JObject.FromObject(new { success = false });
+                return JObject.FromObject(new
+                {
+                    success = false,
+                    message = "Такого продукту не існує в базі даних"
+                });
             }
             else
             {
@@ -50,7 +55,7 @@ namespace ShoppingListArduino.API
                     }
                 });
             }
-           
+
         }
 
         [HttpGet]
@@ -117,7 +122,7 @@ namespace ShoppingListArduino.API
         [Route("add-unassigned-rfid")]
         public JObject AddUnassignedRfid(string rfid, string userId)
         {
-            if(_context.UserProductRfids.Any(x => x.Rfid == rfid))
+            if (_context.UserProductRfids.Any(x => x.Rfid == rfid))
                 return JObject.FromObject(new { success = false, message = "Продукт с такой меткой уже есть в базе." });
             try
             {
@@ -138,7 +143,7 @@ namespace ShoppingListArduino.API
         {
             var userProduct = _context.UserProducts.Find(userProductId);
 
-            if (_context.UserProductRfids.Count(x=>x.UserProductId==userProductId) == userProduct.Quantity)
+            if (_context.UserProductRfids.Count(x => x.UserProductId == userProductId) == userProduct.Quantity)
             {
                 return JObject.FromObject(new { success = false, message = "Все товары данного типа уже привязаны к RFID метке" });
             }
@@ -182,7 +187,7 @@ namespace ShoppingListArduino.API
             {
                 return JObject.FromObject(new { success = false, message = "У Вас дома уже не числится такой продукт!" });
             }
-                userProduct.Quantity -= quantity;
+            userProduct.Quantity -= quantity;
             if (userProduct.Quantity <= 0)
             {
                 if (userProduct.UserProductRfids.Count > 0)
@@ -211,14 +216,14 @@ namespace ShoppingListArduino.API
             var product = _context.Products.FirstOrDefault(x => x.Barcode == barcode);
             if (product == null)
             {
-                return JObject.FromObject(new { success = false, message="thtere is no such product in DB" });
+                return JObject.FromObject(new { success = false, message = "thtere is no such product in DB" });
             }
 
             var userProduct = _context.UserProducts.FirstOrDefault(p => p.UserId == userId && p.ProductId == product.Id);
 
             if (userProduct == null)
             {
-                return JObject.FromObject(new { success = true,  message = "thtere is no such userproduct in DB for this user" });
+                return JObject.FromObject(new { success = true, message = "thtere is no such userproduct in DB for this user" });
             }
 
             userProduct.Quantity -= 1;

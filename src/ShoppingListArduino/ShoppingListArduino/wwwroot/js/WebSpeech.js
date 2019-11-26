@@ -27,7 +27,7 @@ var bg = document.querySelector('html');
 var hints = document.querySelector('.hints');
 var $recordButton = $('#recButton');
 var colorHTML = '';
-hints.innerHTML = 'Tap/click then say a color to change the background color of the app. Try ' + colorHTML + '.';
+hints.innerHTML = 'Натисніть на червоне коло та почніть додавати товари. Наприклад "додати сіль".';
 
 $recordButton.on("click",
     function () {
@@ -56,9 +56,9 @@ recognition.onresult = function (event) {
     bg.style.backgroundColor = color;
     console.log('Confidence: ' + event.results[0][0].confidence);
     var action;
-    if (command == "добавить" || command == "add ") {
+    if (command == "добавить" || command == "додати" || command == "add ") {
         action = "add-user-product";
-    } else if (command == "выкинуть" || command == "remove ") {
+    } else if (command == "видалити" || command == "прибрати" || command == "викинути" || command == "удалить" || command == "выкинуть" || command == "remove ") {
         action = "user-product-to-bin";
     } else {
         $.alert("Unknown action");

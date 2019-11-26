@@ -1,5 +1,6 @@
 ﻿$(function () {
     $(".bind-rfid").on("click", function (e) {
+        e.preventDefault();
         var userProductId = $(e.currentTarget).data("user-product-id");
         var data = {
             userProductId: userProductId,
