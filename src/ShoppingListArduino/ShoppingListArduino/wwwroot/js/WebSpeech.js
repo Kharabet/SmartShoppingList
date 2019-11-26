@@ -18,7 +18,7 @@ var speechRecognitionList = new SpeechGrammarList();
 speechRecognitionList.addFromString(grammar, 1);
 recognition.grammars = speechRecognitionList;
 //recognition.continuous = false;
-recognition.lang = 'ru-ru';
+recognition.lang = 'uk-uk';
 recognition.interimResults = false;
 recognition.maxAlternatives = 1;
 
@@ -52,7 +52,7 @@ recognition.onresult = function (event) {
     var color = event.results[last][0].transcript;
     var command = color.split(' ')[0].toLowerCase();
     var item = color.substr(color.indexOf(" ") + 1).toLowerCase();
-    diagnostic.textContent = 'You wan to' + command + ' the' + item + '.';
+    diagnostic.textContent = command + ' ' + item + '.';
     bg.style.backgroundColor = color;
     console.log('Confidence: ' + event.results[0][0].confidence);
     var action;
