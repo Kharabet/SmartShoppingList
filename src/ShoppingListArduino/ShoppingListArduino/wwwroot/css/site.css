@@ -339,7 +339,8 @@ i.icon-24-scan {
 }
 
 .badge {
-    margin-right: 10px
+    margin-right: 10px;
+    background-color: rgb(46, 109, 164)
 }
 
 .mt-20 {

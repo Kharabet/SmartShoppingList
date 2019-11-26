@@ -27,7 +27,7 @@ var bg = document.querySelector('html');
 var hints = document.querySelector('.hints');
 var $recordButton = $('#recButton');
 var colorHTML = '';
-hints.innerHTML = 'Натисніть на червоне коло та почніть додавати товари. Наприклад "додати сіль".';
+hints.innerHTML = 'Натисніть на червону кнопку та почніть додавати товари. Наприклад "додати сіль".';
 
 $recordButton.on("click",
     function () {

@@ -18,7 +18,7 @@
 
 <div class="mt-20" style="display: flex">
     <div>
-        <button id="recButton" class="start-record"></button>
+        <button id="recButton" class="start-record" aria-label="Audio Record button"></button>
     </div>
     <div>
         <p class="hints"></p>
@@ -34,8 +34,8 @@
         <span class="badge">@Html.DisplayFor(modelItem => item.Quantity)</span>
 
         <div data-overflow-menu class="bx--overflow-menu">
-            <button class="bx--overflow-menu__trigger bx--tooltip__trigger bx--tooltip--a11y bx--tooltip--left bx--tooltip--align-start"
-                    aria-haspopup="true" aria-expanded="false" id="example-qztjk1hc1u9-trigger" aria-controls="example-qztjk1hc1u9">
+            <button aria-label="Sub-menu" class="bx--overflow-menu__trigger bx--tooltip__trigger bx--tooltip--a11y bx--tooltip--left bx--tooltip--align-start"
+                    aria-haspopup="false" aria-expanded="false" id="example-qztjk1hc1u9-trigger" aria-controls="example-qztjk1hc1u9">
                 
                 <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--overflow-menu__icon" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="3" r="1"></circle><circle cx="8" cy="8" r="1"></circle><circle cx="8" cy="13" r="1"></circle></svg>
             </button>
@@ -44,7 +44,7 @@
                  id="example-qztjk1hc1u9">
                 <ul class="bx--overflow-menu-options__content">
                     <li class="bx--overflow-menu-options__option">
-                        <a ahref="#" data-user-product-id="@item.Id"
+                        <a href="#" data-user-product-id="@item.Id"
                            role="menuitem" class="bx--overflow-menu-options__btn bind-rfid">
                             <span>Bind RFID</span>
                         </a>
