@@ -10,7 +10,7 @@ var grammar = `#JSGF V1.0;
 grammar voicecommands;
 
  public <command> = <action> <object>;
-<action> = /10/ add |/2/ remove |/1/ delete |/1/ throw;
+<action> = /10/ add |/2/ remove |/1/ delete |/1/ throw | /10/ додати | /10/ видалити | /10/ викинути | /10/ прибрати;
 <object> = ` + products.join(' | ') + ` ;`;
 
 var recognition = new SpeechRecognition();
