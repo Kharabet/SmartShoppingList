@@ -1,0 +1,125 @@
+1 - https://www.plantoeat.com/tour/automated-grocery-list-maker/
+2- https://www.entrepreneur.com/article/288561
+3- https://en.wikipedia.org/wiki/Automation
+4 - https://en.wikipedia.org/wiki/Automatic_identification_and_data_capture
+5 - https://en.wikipedia.org/wiki/Barcode
+6 - https://barcode-labels.com/technical-support/barcode-white-papers/2d-barcodes/
+7 - https://en.wikipedia.org/wiki/QR_code
+8 - https://en.wikipedia.org/wiki/Barcode_reader
+9 img - https://www.bournetocode.com/projects/AQA_AS_Theory/pages/img/pen-type-reader.jpg
+10 img - https://www.denso-wave.com/fsys/en/adcd/fundamental/barcode/scan/img_03__271x207.gif
+11 img - http://www.barcodedatalink.com/media/bakery/images/scan%20omnidirectional%20good%20scan.jpg
+12 - https://en.wikipedia.org/wiki/Radio-frequency_identification
+13 - https://www.impinj.com/about-rfid/types-of-rfid-systems/
+14 - Hesseldahl, Arik, 2004. A Hacker's Guide To RFID. Available from:
+http://www.forbes.com/commerce/2004/07/29/cx_ah_0729rfid.html
+15 img - https://www.impinj.com/media/2544/sgtin-96-epc-data-fields.png
+16 - Hulme, G., & Claburn, T., 2004. RFID's Security Challenge. Available from:
+http://www.informationweek.com/story/showArticle.jhtml?articleID=52601030&tid=1
+3690
+17 img - https://www.impinj.com/media/2209/polarization-graphics_ch2.png
+18 - https://www.uinta6.k12.wy.us/site/handlers/filedownload.ashx?moduleinstanceid=610&dataid=2363&FileName=Card%20Info.pdf
+19 - https://developer.ibm.com/articles/iot-lp101-connectivity-network-protocols/
+20 - https://www.avsystem.com/blog/iot-protocols-and-standards/
+21- https://www.rs-online.com/designspark/eleven-internet-of-things-iot-protocols-you-need-to-know-about
+22 - https://www.hindawi.com/journals/js/2018/6464036/
+23 - https://www.bluetooth.com/specifications/bluetooth-core-specification/bluetooth5
+
+
+=======
+12 Gibbs, T., 2004. RFID: The Next New Thing. Intel Corporation. Available form:
+http://www.ascet.com/document.asp?d_id=2539.
+13 Sule, S., Avhad, S. 2003. Is RFID a Disruptive Technology? Patni Computer
+Systems Ltd.
+14 Berthon, A. & Guillory, M., 2000. Security in RFID. Texas Instruments and
+Intermec Technologies. Available from: http://stud.ita.hsr.ch/ss03/ss0304/
+15 Claburn, T. & Hulme G., 2004. RFID's Security Challenge. Available
+from:http://www.informationweek.com
+16 Hesseldahl, Arik, 2004. A Hacker's Guide To RFID. Available from:
+http://www.forbes.com/commerce/2004/07/29/cx_ah_0729rfid.html
+17 Hulme, G., & Claburn, T., 2004. RFID's Security Challenge. Available from:
+http://www.informationweek.com/story/showArticle.jhtml?articleID=52601030&tid=1
+3690
+18 Rothfeder, J., 2004. What's Wrong With RFID? Available from:
+http://www.eweek.com/article2/0,1759,1634129,00.asp
+19 S. Garfinkel and B. Rosenberg, editors. RFID Applications, Security,and Privacy.
+Addison-Wesley, 2005.
+20 Eric Lundquist . The Real RFID Security Issue available from
+http://www.eweek.com/article2/0,1895,1941421,00.asp
+21 Thomas Claburn George V. Hulme . RFID's Security Challenge available from
+http://www.informationweek.com/story/showArticle.jhtml?articleID=52601030&tid=1
+3690 
+
+
+22- Justin Lahart (27 November 2009). "Taking an Open-Source Approach to Hardware". The Wall Street Journal. Retrieved 7 September 2014.
+23 - https://en.wikipedia.org/wiki/Arduino#cite_note-kushner-2
+24 - "How many Arduinos are "in the wild?" About 300,000". Adafruit Industries. May 15, 2011. Retrieved 2013-05-26. 
+25 - "Using Atmel Studio for Arduino development". Megunolink.com. Retrieved 2013-01-18.
+26 - "Optiboot Bootloader for Arduino and Atmel AVR". Retrieved 2015-10-01. 
+27 "Arduino Shields for Prototyping". tigoe.net. 
+28 - Jonathan Oxer. "Arduino Shield list". Retrieved 5 Nov 2013. 
+29 - https://en.wikipedia.org/wiki/Arduino_IDE
+30 - https://www.arduino.cc/en/Main/arduinoBoardMega/
+31 - http://hiku.us/
+32 - https://mediafeed.org/review-hiku-the-smart-tool-for-todays-smart-kitchen/
+33 - https://www.tomsguide.com/us/genican-trash-scanner,news-24214.html
+34 - https://www.digitaltrends.com/home/genican-grocery-list-smart-home-amazon-dash-replenishment-ces-2017/
+35 - https://www.genican.com/pages/faq
+36 - https://www.genican.com/pages/install
+
+37 - https://docs.microsoft.com/en-us/archive/msdn-magazine/2016/april/net-core-net-goes-cross-platform-with-net-core
+38 - https://en.wikipedia.org/wiki/.NET_Core
+39 - https://dotnet.microsoft.com/learn/aspnet/architecture
+40 - https://docs.microsoft.com/en-us/ef/core/
+41 - https://docs.microsoft.com/en-us/ef/core/platforms/
+42 - https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-3.0&tabs=visual-studio
+43 - https://docs.microsoft.com/en-us/aspnet/core/security/authentication/customize-identity-model?view=aspnetcore-3.0
+45 - https://docs.microsoft.com/en-us/aspnet/core/razor-pages/?view=aspnetcore-3.0&tabs=visual-studio-mac
+
+
+
+46 - https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis
+47 - https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition
+48 - https://puneetk.com/basics-of-java-speech-grammar-format-jsgf
+
+49 - https://serratus.github.io/quaggaJS/
+50 - https://groups.google.com/forum/#!topic/discuss-webrtc/sq5CVmY69sc
+51 - https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
+
+
+52 - https://barcodesdatabase.org/selected-products/?country_list_select=UA&sort_options=0
+53 - https://internationalbarcodes.com/barcode-registration/
+54 - https://barcodesdatabase.org/barcode-registration/
+
+
+
+55 img - https://www.carltontechnologies.com/wp-content/uploads/2016/09/Scanner-Parts.1.jpg
+
+56 - e1007 guid
+57 - e1005 guide
+
+58 - https://usamodelkina.ru/uploads/posts/2016-07/1469754633_8199930e-d4e8-45dc-a925-2583d90021cc.jpg
+59 - https://3d-diy.ru/wiki/arduino-datchiki/infrakrasnyj-datchik-prepyatstvij-yl-63/
+60 - http://zi-zi.ru/docs/modules/info_FC-51.pdf
+
+61 - https://www.espressif.com/sites/default/files/documentation/0a-esp8266ex_datasheet_en.pdf#page=6&zoom=100,0,113
+62 - https://en.wikipedia.org/wiki/ESP8266#/media/File:ESP8266_01_PinOut.png
+
+63 - http://www.microchip.ua/wireless/esp01.pdf
+
+64 - https://its-wiki.no/images/c/c6/Introduction_to_RFID.pdf
+65 - https://www.nxp.com/docs/en/data-sheet/MFRC522.pdf
+66 - https://lastminuteengineers.com/how-rfid-works-rc522-arduino-tutorial/
+
+67 img - https://www.sunrom.com/media/content/342/RC522-dimensions.gif
+
+68 https://components101.com/wireless/esp12e-pinout-datasheet
+69 img - https://components101.com/sites/default/files/component_pin/ESP12E-Pinout.png
+
+========
+https://www.researchgate.net/publication/297734853_Arduino_and_Open_Source_Computer_Hardware_and_Software
+aruino
+
+[1] "Arduino - Introduction". arduino.cc.
+[1] "Arduino - Introduction". arduino.cc. [2] "How many Arduinos are "in the wild?" About 300,000". Adafruit Industries. May 15, 2011. Retrieved 2013-05-26. [3] "Arduino FAQ – With David Cuartielles". Malmö University. April 5, 2013. Retrieved 2014-03-24. [4] "Home". arduinohistory.github.io. 2016-01-01. Retrieved 2016-03-06. [5] David Kushner (26 Oct 2011). "The Making of Arduino". IEEE Spectrum. [6] Justin Lahart (27 November 2009). "Taking an Open-Source Approach to Hardware". The Wall Street Journal. Retrieved 7 September 2014. [7] "Rhizome - Interview with Casey Reas and Ben Fry". 2009-09-23. Retrieved 2014-08-23. [8] "Hardware Index". Arduino Project. Retrieved 2013-12-10. [9] "Optiboot Bootloader for Arduino and Atmel AVR". Retrieved 2015-10-01. [10] Schmidt, M. ["Arduino: A Quick Start Guide"], Pragmatic Bookshelf, January 22, 2011, Pg. 201 [11] "Arduino Shields for Prototyping". tigoe.net. [12] Jonathan Oxer. "Arduino Shield list". Retrieved 5 Nov 2013. [13] "Arduino Software Release Notes". Arduino Project. Retrieved May 31, 2013. [14] "Using Atmel Studio for Arduino development". Megunolink.com. Retrieved 2013-01-18. [15] "Using AVR Studio for Arduino development". Engblaze.com. Retrieved 2013-01-18. [16] "Programming Arduino Getting Started with Sketches". McGraw-Hill. Nov 8, 2011. Retrieved 2013-03-28. [17] "Blink Tutorial". Arduino.cc. 
+[18] "The arduino source code". The arduino source code. [19] "Policy". Arduino.cc. Retrieved 2013-01-18. [20] "Freeduino Open Designs". Freeduino.org. Retrieved 2008-03-03. [21] "xoscillo – A software oscilloscope that acquires data using an arduino or a parallax (more platforms to come). – Google Project Hosting". Code.google.com. Retrieved 2013-01-18. [22] Pearce, Joshua M. 2012. "Building Research Equipment with Free, Open-Source Hardware". Science  (6100): 1303–1304. (open access) [23] Kubínová, S. and Šlégr, J., 2015. ChemDuino: Adapting Arduino for Low-Cost Chemical Measurements in Lecture and Laboratory. Journal of Chemical Education, 92(10), pp.1751-1753. [24] ArduinoPhone. Instructables.com (2013-07-17). Retrieved on 2013-08-04. [25] DIY Cellphone, MIT [26] Raspberry Pi Spy. Introducing The GertDuino Add-on Board For Raspberry Pi. Retrieved on 2014-11-09. [27] Bas Wijnen, G. C. Anzalone and Joshua M. Pearce, Open-source mobile water quality testing platform. Journal of Water, Sanitation and Hygiene for Development, 4(3) pp. 532–537 (2014). doi:10.2166/washdev.2014.137 open access [28] CNC V2.0. Homofaciens.de . Retrieved on 2016-02-24 [29] "Ars Electronica Archiv". Retrieved 2015-03-27. [30] "Business Entity Summary for Arduino LLC". Mass.gov. State of Massachusetts. [31] Allan, Alasdair (6 March 2015). "Arduino Wars: Group Splits, Competing Products Revealed?". makezine.com. Maker Media, Inc. Retrieved 21 April 2015. [32] Banzi, Massimo (19 March 2015). "Massimo Banzi: Fighting for Arduino". makezine.com. Maker Media, Inc. Retrieved 21 April 2015. [33] Williams, Elliot (28 March 2015). "Arduino SRL to Distributors: "We’re the REAL Arduino"". Hackaday.com. Hackaday.com. Retrieved 21 April 2015. [34] "Arduino Announces New Brand, Genuino, Manufacturing Partnership with Adafruit - Make:". Make:. Retrieved 17 May 2015
