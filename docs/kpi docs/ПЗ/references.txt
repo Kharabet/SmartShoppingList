@@ -53,10 +53,12 @@ http://www.informationweek.com/story/showArticle.jhtml?articleID=52601030&tid=1
 
 22- Justin Lahart (27 November 2009). "Taking an Open-Source Approach to Hardware". The Wall Street Journal. Retrieved 7 September 2014.
 23 - https://en.wikipedia.org/wiki/Arduino#cite_note-kushner-2
-24 - "How many Arduinos are "in the wild?" About 300,000". Adafruit Industries. May 15, 2011. Retrieved 2013-05-26. 
+24(видалена у тексті) - "How many Arduinos are "in the wild?" About 300,000". Adafruit Industries. May 15, 2011. Retrieved 2013-05-26. 
 25 - "Using Atmel Studio for Arduino development". Megunolink.com. Retrieved 2013-01-18.
-26 - "Optiboot Bootloader for Arduino and Atmel AVR". Retrieved 2015-10-01. 
-27 "Arduino Shields for Prototyping". tigoe.net. 
+26(видалена з тексту) - "Optiboot Bootloader for Arduino and Atmel AVR". Retrieved 2015-10-01. 
+26 img - https://cnet2.cbsistatic.com/img/oZ_T1w-udySmCPnHU7SkmPBW3r0=/756x425/2013/10/14/5af5ae66-6788-11e3-846b-14feb5ca9861/2Z9A5312_copy.jpg
+27(виделана з тексту) "Arduino Shields for Prototyping". tigoe.net. 
+27 img - https://cdn.vox-cdn.com/thumbor/KhgbkJPF9GOZWHUsWEUHjvHhzmA=/0x0:1000x615/1400x1050/filters:focal(420x228:580x388):format(jpeg)/cdn.vox-cdn.com/uploads/chorus_image/image/52577167/red_w_alum_1024x1024.0.jpeg
 28 - Jonathan Oxer. "Arduino Shield list". Retrieved 5 Nov 2013. 
 29 - https://en.wikipedia.org/wiki/Arduino_IDE
 30 - https://www.arduino.cc/en/Main/arduinoBoardMega/
@@ -65,8 +67,8 @@ http://www.informationweek.com/story/showArticle.jhtml?articleID=52601030&tid=1
 33 - https://www.tomsguide.com/us/genican-trash-scanner,news-24214.html
 34 - https://www.digitaltrends.com/home/genican-grocery-list-smart-home-amazon-dash-replenishment-ces-2017/
 35 - https://www.genican.com/pages/faq
-36 - https://www.genican.com/pages/install
-
+36(видалено) - https://www.genican.com/pages/install
+36 - https://progressivegrocer.com/new-grocery-technology-piloted-kroger-microsoft-shows-store-future
 37 - https://docs.microsoft.com/en-us/archive/msdn-magazine/2016/april/net-core-net-goes-cross-platform-with-net-core
 38 - https://en.wikipedia.org/wiki/.NET_Core
 39 - https://dotnet.microsoft.com/learn/aspnet/architecture
@@ -89,7 +91,7 @@ http://www.informationweek.com/story/showArticle.jhtml?articleID=52601030&tid=1
 
 52 - https://barcodesdatabase.org/selected-products/?country_list_select=UA&sort_options=0
 53 - https://internationalbarcodes.com/barcode-registration/
-54 - https://barcodesdatabase.org/barcode-registration/
+54(видалена з тексту) - https://barcodesdatabase.org/barcode-registration/
 
 
 
