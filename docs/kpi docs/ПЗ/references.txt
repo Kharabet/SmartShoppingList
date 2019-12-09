@@ -6,18 +6,18 @@
 6 - https://barcode-labels.com/technical-support/barcode-white-papers/2d-barcodes/
 7 - https://en.wikipedia.org/wiki/QR_code
 8 - https://en.wikipedia.org/wiki/Barcode_reader
-9 img - https://www.bournetocode.com/projects/AQA_AS_Theory/pages/img/pen-type-reader.jpg
-10 img - https://www.denso-wave.com/fsys/en/adcd/fundamental/barcode/scan/img_03__271x207.gif
-11 img - http://www.barcodedatalink.com/media/bakery/images/scan%20omnidirectional%20good%20scan.jpg
+9 img - https://www.bournetocode.com/projects/AQA_AS_Theory/pages/img/pen-type-reader.jpg (Сканер-ручка штрих-коду)
+10 img - https://www.denso-wave.com/fsys/en/adcd/fundamental/barcode/scan/img_03__271x207.gif (Зовнішній вигляд світлодіодного сканеру)
+11 img - http://www.barcodedatalink.com/media/bakery/images/scan%20omnidirectional%20good%20scan.jpg (Розсіювання променів багатонаправленого сканеру Motorola LS9208 )
 12 - https://en.wikipedia.org/wiki/Radio-frequency_identification
 13 - https://www.impinj.com/about-rfid/types-of-rfid-systems/
 14 - Hesseldahl, Arik, 2004. A Hacker's Guide To RFID. Available from:
 http://www.forbes.com/commerce/2004/07/29/cx_ah_0729rfid.html
-15 img - https://www.impinj.com/media/2544/sgtin-96-epc-data-fields.png
+15 img - https://www.impinj.com/media/2544/sgtin-96-epc-data-fields.png (Формат Electronic Product Code (EPC) )
 16 - Hulme, G., & Claburn, T., 2004. RFID's Security Challenge. Available from:
 http://www.informationweek.com/story/showArticle.jhtml?articleID=52601030&tid=1
 3690
-17 img - https://www.impinj.com/media/2209/polarization-graphics_ch2.png
+17 img - https://www.impinj.com/media/2209/polarization-graphics_ch2.png (Сигнали різних типів антен )
 18 - https://www.uinta6.k12.wy.us/site/handlers/filedownload.ashx?moduleinstanceid=610&dataid=2363&FileName=Card%20Info.pdf
 19 - https://developer.ibm.com/articles/iot-lp101-connectivity-network-protocols/
 20 - https://www.avsystem.com/blog/iot-protocols-and-standards/
@@ -53,10 +53,12 @@ http://www.informationweek.com/story/showArticle.jhtml?articleID=52601030&tid=1
 
 22- Justin Lahart (27 November 2009). "Taking an Open-Source Approach to Hardware". The Wall Street Journal. Retrieved 7 September 2014.
 23 - https://en.wikipedia.org/wiki/Arduino#cite_note-kushner-2
-24 - "How many Arduinos are "in the wild?" About 300,000". Adafruit Industries. May 15, 2011. Retrieved 2013-05-26. 
+24(видалена у тексті) - "How many Arduinos are "in the wild?" About 300,000". Adafruit Industries. May 15, 2011. Retrieved 2013-05-26. 
 25 - "Using Atmel Studio for Arduino development". Megunolink.com. Retrieved 2013-01-18.
-26 - "Optiboot Bootloader for Arduino and Atmel AVR". Retrieved 2015-10-01. 
-27 "Arduino Shields for Prototyping". tigoe.net. 
+26(видалена з тексту) - "Optiboot Bootloader for Arduino and Atmel AVR". Retrieved 2015-10-01. 
+26 img - https://cnet2.cbsistatic.com/img/oZ_T1w-udySmCPnHU7SkmPBW3r0=/756x425/2013/10/14/5af5ae66-6788-11e3-846b-14feb5ca9861/2Z9A5312_copy.jpg (Зовнішній вигляд Hiku )
+27(виделана з тексту) "Arduino Shields for Prototyping". tigoe.net. 
+27 img - https://cdn.vox-cdn.com/thumbor/KhgbkJPF9GOZWHUsWEUHjvHhzmA=/0x0:1000x615/1400x1050/filters:focal(420x228:580x388):format(jpeg)/cdn.vox-cdn.com/uploads/chorus_image/image/52577167/red_w_alum_1024x1024.0.jpeg (Зовнішній вигляд GeniCan )
 28 - Jonathan Oxer. "Arduino Shield list". Retrieved 5 Nov 2013. 
 29 - https://en.wikipedia.org/wiki/Arduino_IDE
 30 - https://www.arduino.cc/en/Main/arduinoBoardMega/
@@ -65,8 +67,8 @@ http://www.informationweek.com/story/showArticle.jhtml?articleID=52601030&tid=1
 33 - https://www.tomsguide.com/us/genican-trash-scanner,news-24214.html
 34 - https://www.digitaltrends.com/home/genican-grocery-list-smart-home-amazon-dash-replenishment-ces-2017/
 35 - https://www.genican.com/pages/faq
-36 - https://www.genican.com/pages/install
-
+36(видалено) - https://www.genican.com/pages/install
+36 - https://progressivegrocer.com/new-grocery-technology-piloted-kroger-microsoft-shows-store-future
 37 - https://docs.microsoft.com/en-us/archive/msdn-magazine/2016/april/net-core-net-goes-cross-platform-with-net-core
 38 - https://en.wikipedia.org/wiki/.NET_Core
 39 - https://dotnet.microsoft.com/learn/aspnet/architecture
@@ -74,6 +76,7 @@ http://www.informationweek.com/story/showArticle.jhtml?articleID=52601030&tid=1
 41 - https://docs.microsoft.com/en-us/ef/core/platforms/
 42 - https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-3.0&tabs=visual-studio
 43 - https://docs.microsoft.com/en-us/aspnet/core/security/authentication/customize-identity-model?view=aspnetcore-3.0
+44 - https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller
 45 - https://docs.microsoft.com/en-us/aspnet/core/razor-pages/?view=aspnetcore-3.0&tabs=visual-studio-mac
 
 
@@ -89,21 +92,21 @@ http://www.informationweek.com/story/showArticle.jhtml?articleID=52601030&tid=1
 
 52 - https://barcodesdatabase.org/selected-products/?country_list_select=UA&sort_options=0
 53 - https://internationalbarcodes.com/barcode-registration/
-54 - https://barcodesdatabase.org/barcode-registration/
+54(видалена з тексту) - https://barcodesdatabase.org/barcode-registration/
 
 
 
-55 img - https://www.carltontechnologies.com/wp-content/uploads/2016/09/Scanner-Parts.1.jpg
+55 img - https://www.carltontechnologies.com/wp-content/uploads/2016/09/Scanner-Parts.1.jpg (Світлодіодний сканер штрих-коду )
 
-56 - e1007 guid
-57 - e1005 guide
+56 - e1007 guid (Світлодіодний сканер штрих-коду 1D Barcode Scanner E1005 )
+57 - e1005 guide (Габарити модуля сканеру E1005 )
 
-58 - https://usamodelkina.ru/uploads/posts/2016-07/1469754633_8199930e-d4e8-45dc-a925-2583d90021cc.jpg
+58 - https://usamodelkina.ru/uploads/posts/2016-07/1469754633_8199930e-d4e8-45dc-a925-2583d90021cc.jpg (Датчик виявлення перешкод YL-63 )
 59 - https://3d-diy.ru/wiki/arduino-datchiki/infrakrasnyj-datchik-prepyatstvij-yl-63/
 60 - http://zi-zi.ru/docs/modules/info_FC-51.pdf
 
 61 - https://www.espressif.com/sites/default/files/documentation/0a-esp8266ex_datasheet_en.pdf#page=6&zoom=100,0,113
-62 - https://en.wikipedia.org/wiki/ESP8266#/media/File:ESP8266_01_PinOut.png
+62 - https://en.wikipedia.org/wiki/ESP8266#/media/File:ESP8266_01_PinOut.png (Зовнішній вигляд та піни модулю ESP-01)
 
 63 - http://www.microchip.ua/wireless/esp01.pdf
 
@@ -111,10 +114,10 @@ http://www.informationweek.com/story/showArticle.jhtml?articleID=52601030&tid=1
 65 - https://www.nxp.com/docs/en/data-sheet/MFRC522.pdf
 66 - https://lastminuteengineers.com/how-rfid-works-rc522-arduino-tutorial/
 
-67 img - https://www.sunrom.com/media/content/342/RC522-dimensions.gif
+67 img - https://www.sunrom.com/media/content/342/RC522-dimensions.gif (Зображення модулю RFID зчитувача RC522 )
 
 68 https://components101.com/wireless/esp12e-pinout-datasheet
-69 img - https://components101.com/sites/default/files/component_pin/ESP12E-Pinout.png
+69 img - https://components101.com/sites/default/files/component_pin/ESP12E-Pinout.png (Зовнішній вигляд та розташування пінів у ESP-12E )
 
 ========
 https://www.researchgate.net/publication/297734853_Arduino_and_Open_Source_Computer_Hardware_and_Software
