@@ -20,7 +20,7 @@ MFRC522 mfrc522(SS_PIN, RST_PIN); // Create MFRC522 instance
 //char password[] = "kukuruza"; // your network password
 int status = WL_IDLE_STATUS; // the Wifi radio's status
 
-char server[] = "http://shoppinglistarduino.localtunnel.me/api/add-unassigned-rfid";
+char server[] = "http://shoppinglistarduino.ngrok.io/api/add-unassigned-rfid";
 int port = 80;
 char userId[] = "6fdf3b68-bb2d-4f4b-bddd-765553db3e06";
 

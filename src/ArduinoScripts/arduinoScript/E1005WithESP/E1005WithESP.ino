@@ -8,7 +8,7 @@
 #include <ESP8266WebServer.h>
 #include <WiFiManager.h> //https://github.com/tzapu/WiFiManager
 
-char server[] = "http://shoppinglistarduino.localtunnel.me/api/user-product-to-bin-by-barcode";
+char server[] = "http://shoppinglistarduino.ngrok.io/api/user-product-to-bin-by-barcode";
 int port = 80;
 char userId[] = "6fdf3b68-bb2d-4f4b-bddd-765553db3e06";
 
