@@ -61,12 +61,12 @@ recognition.onresult = function (event) {
     } else if (command == "видалити" || command == "прибрати" || command == "викинути" || command == "удалить" || command == "выкинуть" || command == "remove ") {
         action = "user-product-to-bin";
     } else {
-        $.alert("Unknown action");
+        $.alert("Невідома команда");
         return;
     }
     $.confirm({
         title: diagnostic.textContent,
-        content: 'Simple confirm!',
+        content: 'Пдітвердження команди!',
         buttons: {
             Yes: function () {
                 var userId = $("#UserProduct_UserId").val();
@@ -83,15 +83,15 @@ recognition.onresult = function (event) {
 
                             $.post("/api/" + action, data).done(function(response) {
                                 if (response.success === true) {
-                                    $.alert("successfully addedd!");
+                                    $.alert("Успішно додано!");
                                     document.location.reload(true);
                                 } else {
-                                    $.alert("Something went wrong!");
+                                    $.alert("Щось пішло не так..");
                                 }
 
                             });
                         } else {
-                            $.alert("There is no such product! Try again!");
+                            $.alert("Такого тоавру не знайдено. Спробуйте ще раз.");
                         }
                     });
             },
@@ -111,11 +111,11 @@ recognition.onspeechend = function () {
 }
 
 recognition.onnomatch = function (event) {
-    diagnostic.textContent = "I didn't recognise that color.";
+    diagnostic.textContent = "Такого товару не знайдено.";
 }
 
 recognition.onerror = function (event) {
-    diagnostic.textContent = 'Error occurred in recognition: ' + event.error;
+    diagnostic.textContent = 'Помилка в розпізнаванні: ' + event.error;
 }
 
 //$('#recButton').addClass("notRec");

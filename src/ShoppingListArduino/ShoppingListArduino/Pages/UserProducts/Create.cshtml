@@ -5,52 +5,83 @@
     ViewData["Title"] = "Create";
 }
 
-<h2>Create</h2>
+<h2>Додавання нового товару</h2>
 
-<h4>UserProduct</h4>
+<h4>Скануйте штрих-код</h4>
 <hr />
 <section id="container" class="container">
-    <h3>The user's camera</h3>
-    <p>
-        If your platform supports the <strong>getUserMedia</strong> API call, you can try the real-time locating and decoding features.
-        Simply allow the page to access your web-cam and point it to a barcode. You can switch between <strong>Code128</strong>
-        and <strong>EAN</strong> to test different scenarios.
-        It works best if your camera has built-in auto-focus.
-    </p>
-    <div class="controls">
-        <fieldset class="input-group">
-            <button class="stop" aria-label="Stop record">Stop</button>
-        </fieldset>
-        <fieldset class="reader-config-group">
-            <label>
-                <span>Barcode-Type</span>
-                <select name="decoder_readers">
-                    <option value="code_128">Code 128</option>
-                    <option value="code_39">Code 39</option>
-                    <option value="code_39_vin">Code 39 VIN</option>
-                    <option value="ean" selected="selected">EAN</option>
-                    <option value="ean_extended">EAN-extended</option>
-                    <option value="ean_8">EAN-8</option>
-                    <option value="upc">UPC</option>
-                    <option value="upc_e">UPC-E</option>
-                    <option value="codabar">Codabar</option>
-                    <option value="i2of5">Interleaved 2 of 5</option>
-                    <option value="2of5">Standard 2 of 5</option>
-                    <option value="code_93">Code 93</option>
-                </select>
-            </label>
-            <label>
-                <span>Resolution (width)</span>
-                <select name="input-stream_constraints">
-                    <option value="320x240">320px</option>
-                    <option selected="selected" value="640x480">640px</option>
-                    <option value="800x600">800px</option>
-                    <option value="1280x720">1280px</option>
-                    <option value="1600x960">1600px</option>
-                    <option value="1920x1080">1920px</option>
-                </select>
-            </label>
-            <label>
+    @*<h3>The user's camera</h3>
+        <p>
+            If your platform supports the <strong>getUserMedia</strong> API call, you can try the real-time locating and decoding features.
+            Simply allow the page to access your web-cam and point it to a barcode. You can switch between <strong>Code128</strong>
+            and <strong>EAN</strong> to test different scenarios.
+            It works best if your camera has built-in auto-focus.
+        </p>*@
+    @*<div id="result_strip">
+        <ul class="thumbnails"></ul>
+        <ul class="collector"></ul>
+    </div>*@
+    <div id="interactive" class="viewport"></div>
+</section>
+
+<div class="row hidden">
+        <div class="col-md-4">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="UserProduct.ProductId" class="control-label"></label>
+                    <select asp-for="UserProduct.ProductId" class="form-control" asp-items="ViewBag.ProductId"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="UserProduct.UserId" class="control-label"></label>
+                    <select asp-for="UserProduct.UserId" class="form-control" asp-items="ViewBag.UserId"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="UserProduct.Quantity" class="control-label"></label>
+                    <input asp-for="UserProduct.Quantity" value="1" class="form-control" />
+                    <span asp-validation-for="UserProduct.Quantity" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+<div class="controls">
+    @*<fieldset class="input-group">
+        <button class="stop" aria-label="Stop record">Stop</button>
+    </fieldset>*@
+    <fieldset class="reader-config-group">
+        <label>
+            <span>Тип штрих-коду</span>
+            <select name="decoder_readers">
+                <option value="code_128">Code 128</option>
+                <option value="code_39">Code 39</option>
+                <option value="code_39_vin">Code 39 VIN</option>
+                <option value="ean" selected="selected">EAN</option>
+                <option value="ean_extended">EAN-extended</option>
+                <option value="ean_8">EAN-8</option>
+                <option value="upc">UPC</option>
+                <option value="upc_e">UPC-E</option>
+                <option value="codabar">Codabar</option>
+                <option value="i2of5">Interleaved 2 of 5</option>
+                <option value="2of5">Standard 2 of 5</option>
+                <option value="code_93">Code 93</option>
+            </select>
+        </label>
+        <label>
+            <span>Роздільна здатність</span>
+            <select name="input-stream_constraints">
+                <option value="320x240">320px</option>
+                <option selected="selected" value="640x480">640px</option>
+                <option value="800x600">800px</option>
+                <option value="1280x720">1280px</option>
+                <option value="1600x960">1600px</option>
+                <option value="1920x1080">1920px</option>
+            </select>
+        </label>
+        @*<label>
                 <span>Patch-Size</span>
                 <select name="locator_patch-size">
                     <option value="x-small">x-small</option>
@@ -59,12 +90,12 @@
                     <option value="large">large</option>
                     <option value="x-large">x-large</option>
                 </select>
-            </label>
-            <label>
+            </label>*@
+        @*<label>
                 <span>Half-Sample</span>
                 <input type="checkbox" checked="checked" name="locator_half-sample" />
-            </label>
-            <label>
+            </label>*@
+        @*<label>
                 <span>Workers</span>
                 <select name="numOfWorkers">
                     <option value="0">0</option>
@@ -73,54 +104,24 @@
                     <option selected="selected" value="4">4</option>
                     <option value="8">8</option>
                 </select>
-            </label>
-            <label>
-                <span>Camera</span>
-                <select name="input-stream_constraints" id="deviceSelection"></select>
-            </label>
-            <label style="display: none">
+            </label>*@
+        <label>
+            <span>Камера</span>
+            <select name="input-stream_constraints" id="deviceSelection"></select>
+        </label>
+        @*<label style="display: none">
                 <span>Zoom</span>
                 <select name="settings_zoom"></select>
-            </label>
-            <label style="display: none">
-                <span>Torch</span>
-                <input type="checkbox" name="settings_torch" />
-            </label>
-        </fieldset>
-    </div>
-    <div id="result_strip">
-        <ul class="thumbnails"></ul>
-        <ul class="collector"></ul>
-    </div>
-    <div id="interactive" class="viewport"></div>
-</section>
-
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="UserProduct.ProductId" class="control-label"></label>
-                <select asp-for="UserProduct.ProductId" class="form-control" asp-items="ViewBag.ProductId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="UserProduct.UserId" class="control-label"></label>
-                <select asp-for="UserProduct.UserId" class="form-control" asp-items="ViewBag.UserId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="UserProduct.Quantity" class="control-label"></label>
-                <input asp-for="UserProduct.Quantity" value="1" class="form-control" />
-                <span asp-validation-for="UserProduct.Quantity" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </form>
-    </div>
+            </label>*@
+        <label style="display: none">
+            <span>Ліхтарик</span>
+            <input type="checkbox" name="settings_torch" />
+        </label>
+    </fieldset>
 </div>
 
 <div>
-    <a asp-page="Index">Back to List</a>
+    <a asp-page="Index">Назад до списку</a>
 </div>
 
 
@@ -138,8 +139,8 @@
             var productQuantity = $("#UserProduct_Quantity").val();
             var userId = $("#UserProduct_UserId").val();
             $.confirm({
-                title: 'Is the barcode is ' + code + '?',
-                content: 'Simple confirm!',
+                title: 'Штрих-код ' + code + '?',
+                content: 'Підтвердіть правильність штрих-коду.',
                 buttons: {
                     Yes: function () {
                         $.get("/api/get-product",
@@ -154,23 +155,23 @@
 
                                     $.post("/api/add-user-product", data).done(function (response) {
                                         if (response.success === true) {
-                                            $.alert("successfully addedd!");
+                                            $.alert("Товар успішно додано!");
                                             document.location.reload(true);
                                         } else {
-                                            $.alert("Something went wrong!");
+                                            $.alert("Щось пішло не так..");
                                         }
 
                                     });
                                 } else {
                                     $.confirm({
-                                        title: 'Add this product!',
+                                        title: 'Додайте новий товар!',
                                         content: '' +
                                             '<form action="" class="formName">' +
                                             '<div class="form-group">' +
-                                            '<label>Title</label>' +
-                                            '<input type="text" name="Product.Title" placeholder="Product Title" class="name form-control" required />' +
-                                            '<label>Description</label>' +
-                                            '<input type="text" name="Product.Description" placeholder="Product Description" class="name form-control" required />' +
+                                            '<label>Назва</label>' +
+                                            '<input type="text" name="Product.Title" placeholder="Назав товару" class="name form-control" required />' +
+                                            '<label>Опис</label>' +
+                                            '<input type="text" name="Product.Description" placeholder="Опис товару" class="name form-control" required />' +
                                             '</div>' +
                                             '</form>',
                                         buttons: {
@@ -194,10 +195,10 @@
 
                                                                     $.post("/api/add-user-product", data).done(function (response) {
                                                                         if (response.success === true) {
-                                                                            $.alert("successfully addedd!");
+                                                                            $.alert("Успішно додано!");
                                                                             document.location.reload(true);
                                                                         } else {
-                                                                            $.alert("Something went wrong!");
+                                                                            $.alert("Щось пішло не так..");
                                                                         }
                                                                     });
                                                                 }
